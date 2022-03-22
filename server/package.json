@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^17.0.22",
+    "dotenv": "^16.0.0",
+    "fastify": "^3.27.4",
+    "fastify-static": "^4.6.1",
+    "path": "^0.12.7",
+    "typescript": "^4.6.2"
+  }
+}
