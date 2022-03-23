@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import portfolio from '../../../images/portfolio.png';
 import eusurvival from '../../../images/eusurvival.png';
+import boiler from '../../../images/boiler.png';
 
 const Projects = () => {
     const [projects] = useState([
@@ -16,6 +17,12 @@ const Projects = () => {
             description: "A React web app made for a European based Minecraft server called eusurvival.com",
             github: "https://github.com/febzey/eusurvival.com"
         },
+        {
+            img: boiler,
+            title: "React Boilerplate",
+            description: "An easy to use, beginner friendly react/fastify backend boilerplate.",
+            github: "https://github.com/febzey/rf-boiler"
+        }
     ])
     return (
         <div className="px-6 w-full min-h-screen gap-12 pb-28 bg-neutral-50 flex flex-col items-center justify-center font-poppins" id="projects">
@@ -28,7 +35,7 @@ const Projects = () => {
                 {
                     projects.map(i => (
                         <div className="flex flex-col gap-3 font-poppins text-center shadow-2xl rounded-2xl px-4 py-6">
-                            <img src={i.img} className="rounded-lg"></img>
+                            <img src={i.img} className="rounded-lg max-h-60"></img>
                             <div className="flex flex-col text-zinc-600">
                                 <h1 className="text-xl font-semibold pb-2">{i.title}</h1>
                                 <p className="px-8 text-sm">{i.description}</p>
