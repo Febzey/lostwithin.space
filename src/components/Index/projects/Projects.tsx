@@ -2,6 +2,7 @@ import { useState } from 'react';
 import portfolio from '../../../images/portfolio.png';
 import eusurvival from '../../../images/eusurvival.png';
 import boiler from '../../../images/boiler.png';
+import sqltool from '../../../images/sqltool.png'
 
 const Projects = () => {
     const [projects] = useState([
@@ -22,6 +23,12 @@ const Projects = () => {
             title: "React Boilerplate",
             description: "An easy to use, beginner friendly react/fastify backend boilerplate.",
             github: "https://github.com/febzey/rf-boiler"
+        },{
+            img: sqltool,
+            title: "MySQL Parser",
+            description: "A web based SQL tool to perform database queries via user interface and restful API.",
+            github: "https://github.com/febzey/mysql-parser"
+
         }
     ])
     return (

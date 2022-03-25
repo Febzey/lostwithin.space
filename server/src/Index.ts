@@ -28,3 +28,4 @@ server.setNotFoundHandler((request, reply) => {
         process.exit(1)
     }
 })();
+
