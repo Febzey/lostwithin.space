@@ -79,7 +79,7 @@ const MyStack = () => {
         <div className="py-28 min-h-[90vh] w-full z-40 bg-neutral-50 flex flex-col gap-28 items-center justify-center">
             <div className="flex flex-col gap-12 w-[90%] lg:w-[70%] min-h-[40vh] py-12">
                 <div className="flex flex-col text-center gap-2">
-                    <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Stack.</h1>
+                    {/* <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Stack.</h1> */}
                     <p className="text-zinc-700 font-poppins text-xl lg:text-2xl px-2">Technologies I use and are familiar with.</p>
                 </div>
                 <div className="grid grid-cols-2 lg:grid-cols-4 items-center mx-auto gap-4 justify-center">

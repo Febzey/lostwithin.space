@@ -14,6 +14,7 @@
     "react-router-dom": "^6.2.2",
     "react-scroll": "^1.8.6",
     "react-tsparticles": "^1.42.3",
+    "react-typed": "^1.2.0",
     "tsparticles-path-curves": "^1.42.3"
   },
   "devDependencies": {

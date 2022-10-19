@@ -18,7 +18,7 @@ const Index = () => {
         fullScreen: false,
         particles: {
             links: {
-                distance: 150,
+                distance: 50,
                 enable: boolean
             },
 
@@ -26,7 +26,7 @@ const Index = () => {
                 enable: true,
             },
             size: {
-                value: 0.4
+                value: 1
             },
             shape: {
                 type: "circle",
@@ -36,7 +36,7 @@ const Index = () => {
 
     return (
         <>
-            <Particles params={config} className="block h-[100vh] w-full absolute z-0" />
+            {/* <Particles params={config} className="block h-[100vh] w-full absolute z-0" /> */}
             <Banner handleToggle={handleToggle} />
             <Content />
         </>

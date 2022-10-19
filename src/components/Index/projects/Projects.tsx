@@ -7,12 +7,6 @@ import sqltool from '../../../images/sqltool.png'
 const Projects = () => {
     const [projects] = useState([
         {
-            img: portfolio,
-            title: "Personal Portfolio",
-            description: "Personal portfolio made with Fastify, Typescript, React, Tailwindcss and vite.",
-            github: "https://github.com/febzey/portfolio"
-        },
-        {
             img: eusurvival,
             title: "www.eusurvival.com",
             description: "A React web app made for a European based Minecraft server called eusurvival.com",
@@ -34,7 +28,7 @@ const Projects = () => {
     return (
         <div className="px-6 w-full min-h-screen gap-12 pb-28 bg-neutral-50 flex flex-col items-center justify-center font-poppins" id="projects">
             <div className="text-center flex flex-col gap-2">
-                <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Projects.</h1>
+                {/* <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Projects.</h1> */}
                 <p className="text-zinc-700 font-poppins text-xl lg:text-2xl px-3">Some noteable projects I have worked on in the past.</p>
             </div>
 
