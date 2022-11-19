@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import portfolio from '../../../images/portfolio.png';
 import eusurvival from '../../../images/eusurvival.png';
 import boiler from '../../../images/boiler.png';
 import sqltool from '../../../images/sqltool.png'
