@@ -3,14 +3,15 @@ import portfolio from '../../../images/portfolio.png';
 import eusurvival from '../../../images/eusurvival.png';
 import boiler from '../../../images/boiler.png';
 import sqltool from '../../../images/sqltool.png'
+import gotime from "../../../images/gotimeread.png"
 
 const Projects = () => {
     const [projects] = useState([
         {
-            img: eusurvival,
-            title: "www.eusurvival.com",
-            description: "A React web app made for a European based Minecraft server called eusurvival.com",
-            github: "https://github.com/febzey/eusurvival.com"
+            img: gotime,
+            title: "gotime",
+            description: "A minimal parser, formalizer and manipulator for time durations and dates in nodejs.",
+            github: "https://github.com/Febzey/gotime"
         },
         {
             img: boiler,
@@ -23,7 +24,13 @@ const Projects = () => {
             description: "A web based SQL tool to perform database queries via user interface and restful API.",
             github: "https://github.com/febzey/mysql-parser"
 
-        }
+        },
+        {
+            img: eusurvival,
+            title: "www.eusurvival.com",
+            description: "A React web app made for a European based Minecraft server called eusurvival.com",
+            github: "https://github.com/febzey/eusurvival.com"
+        },
     ])
     return (
         <div className="px-6 w-full min-h-screen gap-12 pb-28 bg-neutral-50 flex flex-col items-center justify-center font-poppins" id="projects">
