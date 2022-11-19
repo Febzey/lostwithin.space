@@ -35,7 +35,6 @@ const Projects = () => {
     return (
         <div className="px-6 w-full min-h-screen gap-12 pb-28 bg-neutral-50 flex flex-col items-center justify-center font-poppins" id="projects">
             <div className="text-center flex flex-col gap-2">
-                {/* <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Projects.</h1> */}
                 <p className="text-zinc-700 font-poppins text-xl lg:text-2xl px-3">Some projects I have worked on in the past.</p>
             </div>
 
@@ -47,7 +46,7 @@ const Projects = () => {
                             <div className="flex flex-col text-zinc-600">
                                 <h1 className="text-xl font-semibold pb-2">{i.title}</h1>
                                 <p className="px-8 text-sm">{i.description}</p>
-                                {i.github && <p className="text-sm text-zinc-500 mt-5">Repositroy: <br></br><a href={i.github} className="text-sky-400">{i.github}</a></p>
+                                {i.github && <p className="text-sm text-zinc-500 mt-5">Repository: <br></br><a href={i.github} className="text-sky-400">{i.github}</a></p>
                                 }
                             </div>
                         </div>
