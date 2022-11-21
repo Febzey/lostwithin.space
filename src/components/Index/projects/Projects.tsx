@@ -3,6 +3,7 @@ import eusurvival from '../../../images/eusurvival.png';
 import boiler from '../../../images/boiler.png';
 import sqltool from '../../../images/sqltool.png'
 import gotime from "../../../images/gotimeread.png"
+import quickencrypt from "../../../images/quickencrypt.png";
 
 const Projects = () => {
     const [projects] = useState([
@@ -17,18 +18,26 @@ const Projects = () => {
             title: "React Boilerplate",
             description: "An easy to use, beginner friendly react/fastify backend boilerplate.",
             github: "https://github.com/febzey/rf-boiler"
-        },{
+        }, 
+        {
             img: sqltool,
             title: "MySQL Parser",
             description: "A web based SQL tool to perform database queries via user interface and restful API.",
             github: "https://github.com/febzey/mysql-parser"
 
-        },
+        }, 
         {
             img: eusurvival,
             title: "www.eusurvival.com",
             description: "A React web app made for a European based Minecraft server called eusurvival.com",
             github: "https://github.com/febzey/eusurvival.com"
+        },
+        {
+            img: quickencrypt,
+            title: "QuickEncrypt",
+            description: "A nodejs package used for quickly and easily encrypting strings using common encryption algorithms.",
+            github: "https://github.com/febzey/quickencrypt"
+
         },
     ])
     return (
@@ -45,8 +54,8 @@ const Projects = () => {
                             <div className="flex flex-col text-zinc-600">
                                 <h1 className="text-xl font-semibold pb-2">{i.title}</h1>
                                 <p className="px-8 text-sm">{i.description}</p>
-                                {i.github && <p className="text-sm text-zinc-500 mt-5">Repository: <br></br><a href={i.github} className="text-sky-400">{i.github}</a></p>
-                                }
+                                {/* {i.github && <p className="text-sm text-zinc-500 mt-5">Repository: <br></br><a href={i.github} className="text-sky-400">{i.github}</a></p>
+                                } */}
                             </div>
                         </div>
                     ))
