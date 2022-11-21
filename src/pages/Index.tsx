@@ -15,15 +15,19 @@ const Index = () => {
 
     const config = {
         fpsLimit: 120,
-        fullScreen: false,
+        fullScreen: true,
         particles: {
+            color: {
+                value: "#a1a1aa",
+            },
             links: {
-                distance: 35,
+                color: "#a1a1aa",
+                distance: 30,
                 enable: true
             },
-
             move: {
                 enable: true,
+                speed: 0.6
             },
             size: {
                 value: 0.1
