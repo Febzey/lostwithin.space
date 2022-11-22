@@ -15,7 +15,7 @@ const Index = () => {
 
     const config = {
         fpsLimit: 120,
-        fullScreen: true,
+        fullScreen: false,
         particles: {
             color: {
                 value: "#a1a1aa",
