@@ -2,7 +2,7 @@
 
 export default function GreetingCard() {
     return (
-        <div className="w-full h-72 bg-blue-500/90 rounded-xl shadow-2xl relative">
+        <div className="w-full min-h-72 h-auto bg-blue-500/90 rounded-xl shadow-2xl relative">
             <div className="z-50">
                 <div className="bg-blue-500 w-full min-h-20 h-20 rounded-t-xl flex items-center p-8">
                     <h1 className="font-bakbak text-4xl text-white mx-auto">Brayden.tech</h1>

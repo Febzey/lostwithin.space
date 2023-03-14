@@ -82,12 +82,12 @@ const MyStackCard = () => {
                     <h1 className="font-bakbak text-3xl text-white mx-auto">Technologies</h1>
                 </div>
 
-                <ul className="gap-2 w-full h-full  grid lg:grid-cols-6 grid-cols-3 p-4 font-poppins">
+                <ul className="gap-2 w-full h-full  grid lg:grid-cols-6 grid-cols-2 p-4 font-poppins">
                     {
                         images.map((img, val) => (
                             <li key={val} className="flex flex-col gap-2 items-center justify-center p-2 bg-neutral-800/20 rounded-lg">
                                 <img src={img.img} alt={img.name} width={40}></img>
-                                <p>{img.name}</p>
+                                <p className="text-sm px-2">{img.name}</p>
                             </li>
                         ))
                     }
