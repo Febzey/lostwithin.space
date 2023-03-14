@@ -1,18 +1,11 @@
-import { useState } from 'react';
-import Content from '../components/Index/content/Content';
 import Particles from 'react-tsparticles';
-import Banner from '../components/Index/banner/Banner';
+import MyStackCard from '../components/Index/Stack/MyStack';
+import ProjectsCard from '../components/Index/projects/Projects';
+import SocialCard from '../components/Index/Social/SocialCard';
+import GreetingCard from '../components/Index/Greetings/GreetingsCard';
 
 
 const Index = () => {
-    const [boolean, changeBoolean] = useState(false)
-    const handleToggle = () => {
-        !boolean
-            ? document.getElementById('slider')?.classList.add("translate-x-6")
-            : document.getElementById('slider')?.classList.remove("translate-x-6")
-        changeBoolean(!boolean)
-    }
-
     const config = {
         fpsLimit: 120,
         fullScreen: false,
@@ -41,8 +34,12 @@ const Index = () => {
     return (
         <>
             <Particles params={config} className="block h-[100vh] w-full absolute z-0" />
-            <Banner handleToggle={handleToggle} />
-            <Content />
+            <div className="min-h-screen h-auto lg:w-5/12 p-4 mx-auto flex flex-col gap-12 my-12">
+                <GreetingCard />
+                <SocialCard/>
+                <MyStackCard/>
+                <ProjectsCard/>
+            </div>
         </>
     )
 };

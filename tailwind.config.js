@@ -5,10 +5,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "mainBg": "url('./src/images/wave.svg')"
+        "mainBg": "url('./src/images/wave.svg')",
+        "sprinkle": "url('./src/images/backgrounds/sprinkle.svg')",
       },
       fontFamily: {
-        poppins: "'Poppins', 'sans-serif'"
+        poppins: "'Poppins', 'sans-serif'",
+        'bakbak': ['Bakbak One', 'cursive'],
       }
     },
   },

@@ -1,21 +1,21 @@
-import express        from '../../../images/technologies/express.svg';
-import git            from '../../../images/technologies/git.svg';
-import javascript     from '../../../images/technologies/javascript.svg';
-import mysql          from '../../../images/technologies/mysql.svg';
-import node           from '../../../images/technologies/node.svg';
-import react          from '../../../images/technologies/react.svg';
-import tailwind       from '../../../images/technologies/tailwind.svg';
-import typescript     from '../../../images/technologies/typescript.svg';
-import html           from '../../../images/technologies/html.svg';
-import vscode         from '../../../images/technologies/vscode.svg';
-import css            from '../../../images/technologies/css.svg';
-import fastify        from '../../../images/technologies/fastify.svg'
-import vite           from '../../../images/technologies/vite.svg';
-import nginx          from '../../../images/technologies/nginx.svg';
+import express from '../../../images/technologies/express.svg';
+import git from '../../../images/technologies/git.svg';
+import javascript from '../../../images/technologies/javascript.svg';
+import mysql from '../../../images/technologies/mysql.svg';
+import node from '../../../images/technologies/node.svg';
+import react from '../../../images/technologies/react.svg';
+import tailwind from '../../../images/technologies/tailwind.svg';
+import typescript from '../../../images/technologies/typescript.svg';
+import html from '../../../images/technologies/html.svg';
+import vscode from '../../../images/technologies/vscode.svg';
+import css from '../../../images/technologies/css.svg';
+import fastify from '../../../images/technologies/fastify.svg'
+import vite from '../../../images/technologies/vite.svg';
+import nginx from '../../../images/technologies/nginx.svg';
 
-import { useState }   from 'react';
+import { useState } from 'react';
 
-const MyStack = () => {
+const MyStackCard = () => {
     const [images] = useState([
         {
             img: express,
@@ -76,26 +76,27 @@ const MyStack = () => {
     ])
 
     return (
-        <div className="py-28 min-h-[90vh] w-full z-40 bg-neutral-50 flex flex-col gap-28 items-center justify-center">
-            <div className="flex flex-col gap-12 w-[90%] lg:w-[70%] min-h-[40vh] py-12">
-                <div className="flex flex-col text-center gap-2">
-                    {/* <h1 className="text-4xl lg:text-5xl font-poppins font-bold text-zinc-600">My Stack.</h1> */}
-                    <p className="text-zinc-700 font-poppins text-xl lg:text-2xl px-2">Technologies I use and are familiar with.</p>
+        <div className="w-full min-h-72 bg-green-500/90 rounded-xl mt-12 shadow-2xl relative">
+            <div className="z-50">
+                <div className="bg-green-500 w-full min-h-20 h-20 rounded-t-xl flex items-center p-8">
+                    <h1 className="font-bakbak text-3xl text-white mx-auto">Technologies</h1>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 items-center mx-auto gap-4 justify-center">
+
+                <ul className="gap-2 w-full h-full  grid lg:grid-cols-6 grid-cols-3 p-4 font-poppins">
                     {
-                        images.map(i => (
-                            <div className="bg-zinc-50 text-neutral-600 h-44 border-2 border-transparent hover:border-sky-500 duration-300 ease-in-out shadow-xl font-semibold font-poppins flex flex-col items-center justify-center gap-2 rounded-xl lg:w-44 w-36 py-4 px-3">
-                                <img src={i.img} width="100"></img>
-                                <p>{i.name}</p>
-                            </div>
+                        images.map((img, val) => (
+                            <li key={val} className="flex flex-col gap-2 items-center justify-center p-2 bg-neutral-800/20 rounded-lg">
+                                <img src={img.img} alt={img.name} width={40}></img>
+                                <p>{img.name}</p>
+                            </li>
                         ))
                     }
-                </div>
+                </ul>
+
             </div>
         </div>
     )
 
 }
 
-export default MyStack;
+export default MyStackCard;
