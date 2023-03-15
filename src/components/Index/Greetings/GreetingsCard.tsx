@@ -2,7 +2,7 @@
 
 export default function GreetingCard() {
     const domainName = window.location.hostname;
-    let mainTitle = domainName.includes("febzey") ? "Febzey" : "Brayden.tech";
+    let mainTitle = domainName.includes("febzey") ? "Febzey" : "Brayden";
 
     return (
         <div className="w-full min-h-72 h-auto bg-blue-500/90 rounded-xl shadow-2xl relative">
