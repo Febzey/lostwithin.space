@@ -15,7 +15,6 @@ export default function GreetingCard() {
                     <ul className="text-lg list-disc">
                         <li>Mediocre Fullstack developer based in Canada.</li>
                         <li>Writes poor code.</li>
-                        <li>common name I use online: "febzey".</li>
                         <li>I love Next but I hate Vercel!</li>
                         <li>If you want something made you can contact me.</li>
                     </ul>
