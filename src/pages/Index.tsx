@@ -1,11 +1,25 @@
 import Particles from 'react-tsparticles';
-import MyStackCard from '../components/Index/Stack/MyStack';
 import ProjectsCard from '../components/Index/projects/Projects';
-import SocialCard from '../components/Index/Social/SocialCard';
 import GreetingCard from '../components/Index/Greetings/GreetingsCard';
-
+import { useEffect, useState } from "react";
 
 const Index = () => {
+
+    const [viewSize, setViewSize] = useState({ width: 0, height: 0 });
+
+    useEffect(() => {
+        const updateViewSize = () => {
+            setViewSize({ width: window.innerWidth, height: window.innerHeight });
+        };
+
+        window.addEventListener("resize", updateViewSize);
+        updateViewSize();
+
+        return () => window.removeEventListener("resize", updateViewSize);
+    }, []);
+
+    const isMobile = viewSize.width < 768;
+
     const config = {
         fpsLimit: 120,
         fullScreen: false,
@@ -15,31 +29,27 @@ const Index = () => {
             },
             links: {
                 color: "#a1a1aa",
-                distance: 30,
-                enable: true
+                distance: isMobile ? 20 : 50,
+                enable: true,
             },
             move: {
                 enable: true,
-                speed: 0.6
+                speed: 0.6,
             },
             size: {
-                value: 0.1
+                value: isMobile ? 0.1 : 0.3,
             },
-            shape: {
-                type: "circle",
-            }
-        }
-    }
+        },
+    };
 
     return (
         <>
-            <Particles params={config} className="block h-[100vh] w-full absolute z-0" />
-            <div className="min-h-screen h-auto lg:w-5/12 p-4 mx-auto flex flex-col gap-12 my-12">
+            <div className="h-screen w-full relative">
                 <GreetingCard />
-                <SocialCard/>
-                <MyStackCard/>
-                <ProjectsCard/>
+                <Particles params={config} className="block h-screen max-h-screen w-full absolute top-0 z-10" />
             </div>
+        
+            <ProjectsCard />
         </>
     )
 };
