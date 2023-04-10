@@ -35,7 +35,7 @@ export default function GreetingCard() {
 
                 <h1><TextEffect t={`${mainTitle}.dev`} className="text-3xl text-white lg:text-left text-center" /></h1>
                 <h2 className="text-white/90 text-md max-w-full">
-                    Mediocre full stack developer based in Canada, with a passion for building intuitive and efficient software. I take interest in developing APIs, web apps and anything involving large data sets, using technologies such as React, Next, Node.js, Typescript and Golang. While I don't consider my self an expert in these technologies, I'm constantly learning and improving my skills to deliver high-quality work. I have experience working with both small and large-scale projects.
+                    Mediocre full stack developer based in Canada, with a passion for building intuitive and efficient software. I take interest in developing APIs, web apps and anything involving large data sets, using technologies such as React, Next, Node.js, Typescript and Golang. While I don't consider my self an expert in these technologies, I'm constantly learning and improving my skills to deliver high-quality work.
                 </h2>
 
 
