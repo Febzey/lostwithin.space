@@ -70,6 +70,12 @@ const ProjectsCard = () => {
             github: "https://github.com/febzey/snapur",
             stack: [typescript, react, next, vscode, html, tailwind, node, git, mysql],
         },
+        {
+            title: "Portfolio",
+            description: "This website.",
+            github: "https://github.com/febzey/snapur",
+            stack: [ html, tailwind,react, next, node, git, mysql,typescript, vscode],
+        },
     ])
 
     return (

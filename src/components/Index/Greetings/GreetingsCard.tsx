@@ -1,7 +1,5 @@
 
 import { FaDiscord, FaSteam, FaEnvelope, FaGithub, FaChevronDown } from "react-icons/fa";
-import TextEffect from "../../extra/textEffect/textEffect";
-
 const socials = [
     {
         name: "discord",
@@ -26,18 +24,13 @@ const socials = [
 ]
 
 export default function GreetingCard() {
-    const domainName = window.location.hostname;
-    let mainTitle = domainName.includes("febzey") ? "Febzey" : "Brayden";
-
     return (
         <div className="h-screen w-full flex flex-col items-center justify-center z-20 absolute bg-zinc-900/30">
             <div className="flex flex-col w-full lg:w-1/3 lg:max-w-[33%] p-6 gap-4 relative">
 
-                <h1><TextEffect t={`${mainTitle}.dev`} className="text-3xl text-white lg:text-left text-center" /></h1>
-                <h2 className="text-white/90 text-md max-w-full">
-                    Mediocre full stack developer based in Canada, with a passion for building intuitive and efficient software. I take interest in developing APIs, web apps and anything involving large data sets, using technologies such as React, Next, Node.js, Typescript and Golang. While I don't consider my self an expert in these technologies, I'm constantly learning and improving my skills to deliver high-quality work.
-                </h2>
-
+                <h1 className="text-xl">Brayden Tschetter - Portfolio</h1>
+                <p className="text-white/70">Mediocre software dev from Manitoba, Canada. Mainly a hobbyist with experience in web apps, databases, server management and some microservices.</p>
+                <p className="text-white/70">I am sometimes available for occasional projects. If you have something you would like made feel free to contact  </p>
 
                 <ul className="flex flex-row gap-4 w-full items-center justify-center py-10 px-4">
                     {
@@ -55,7 +48,7 @@ export default function GreetingCard() {
                 <FaChevronDown className="animate-bounce" />
             </div>
 
-            <p className=" text-neutral-400 text-sm fixed bottom-6 right-6">@ 2023 {mainTitle}.dev</p>
+            <p className=" text-neutral-400 text-sm fixed bottom-6 right-6">@ 2023 braydentschetter.dev</p>
 
         </div>
     )
