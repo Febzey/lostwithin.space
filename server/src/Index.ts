@@ -6,7 +6,7 @@ import fastifyStatic from 'fastify-static';
 const server = fastify({ logger: false });
 
 console.log(__dirname)
-const webPath = path.join(__dirname, '../../dist');
+const webPath = path.join(__dirname, '../../dist'); 
 const options = {
     root: webPath,
     prefix: "/*"
