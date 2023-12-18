@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "tsc && node build/index.js"
+  },
   "dependencies": {
     "@types/node": "^17.0.22",
     "dotenv": "^16.0.0",
