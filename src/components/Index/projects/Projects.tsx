@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaLink } from "react-icons/fa";
+import { FaArrowLeft, FaLink } from "react-icons/fa";
 
 import express from '../../../images/technologies/express.svg';
 import git from '../../../images/technologies/git.svg';
@@ -24,6 +24,7 @@ import quickencrypt_pic from "../../../images/projects/quickencrypt.png"
 import scriber from "../../../images/projects/scriber.png"
 import snapur from "../../../images/projects/snapur.png"
 import genweb from "../../../images/projects/Genweb.png"
+import { Link } from 'react-router-dom';
 
 
 
@@ -122,8 +123,12 @@ const ProjectsCard = () => {
     ])
 
     return (
-        <div className="mt-[10%] w-full lg:w-2/3 mx-auto items-center justify-center min-h-screen z-30 flex flex-col p-4 mb-40">
-            <div className="mr-auto ml-3 flex gap-1 flex-col">
+        <div className="w-full ">
+            <Link to={"/"} className="flex flex-row gap-2 items-center underline-offset-4 duration-150 hover:text-neutral-500">
+                <FaArrowLeft />
+                Home
+            </Link>
+            <div className="mr-auto flex gap-1 flex-col mt-24">
                 <h2 className="text-3xl uppercase">Projects</h2>
                 <p className="text-neutral-300">a collection of projects/work I've done in the past.</p>
                 <p className="text-neutral-500 text-sm">(note: this is not a complete list. To see all my public projects/work visit my github page.)</p>
@@ -141,12 +146,12 @@ const ProjectsCard = () => {
                             </div>
 
                             <div className="w-full h-full flex flex-col gap-4">
-                                {
+                                {/* {
                                     project.image &&
                                     <div className="rounded-md bg-zinc-600 bg-opacity-25 p-2">
                                         <img src={project.image} className="bg-cover h-auto w-full"></img>
                                     </div>
-                                }
+                                } */}
 
                                 <div className="w-full h-full flex flex-col  items-center gap-4">
                                     <div className=" flex flex-row items-center justify-start gap-2 flex-wrap mr-auto">

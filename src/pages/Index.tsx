@@ -3,7 +3,7 @@ import ProjectsCard from '../components/Index/projects/Projects';
 import GreetingCard from '../components/Index/Greetings/GreetingsCard';
 import { useEffect, useState } from "react";
 
-import { FaMoon,FaSun,FaEnvelope } from "react-icons/fa"
+import { FaMoon, FaSun, FaEnvelope } from "react-icons/fa"
 
 const Index = () => {
 
@@ -45,15 +45,16 @@ const Index = () => {
     };
 
     return (
-        <>
-            <div className="h-screen w-full relative">
-                <NavBar/>
+        <div >
+            <Particles params={config} className="block h-screen max-h-screen w-full absolute top-0 z-10" />
+
+            <div className="h-screen lg:w-1/3 w-[90%] mx-auto relative">
+                <NavBar />
                 <GreetingCard />
-                <Particles params={config} className="block h-screen max-h-screen w-full absolute top-0 z-10" />
             </div>
-        
-            <ProjectsCard />
-        </>
+
+            {/* <ProjectsCard /> */}
+        </div>
     )
 };
 export default Index;
@@ -63,12 +64,12 @@ function NavBar() {
 
     return (
         <div className="w-full h-[7%]  absolute z-50 bg-opacity-20">
-            <div className="flex mx-auto w-full items-center md:justify-evenly justify-between h-full text-2xl p-4">
-                <a href=""><FaEnvelope className="hover:text-sky-700 duration-200"/></a>
+            <div className="flex mx-auto w-full items-center justify-between h-full text-2xl py-4">
+                <a href=""><FaEnvelope className="hover:text-sky-700 duration-200" /></a>
 
-                <FaMoon/>
+                <FaMoon />
             </div>
-        
+
         </div>
     )
 }

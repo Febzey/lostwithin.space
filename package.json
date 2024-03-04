@@ -8,13 +8,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.2.2",
     "react-scroll": "^1.8.6",
     "react-tsparticles": "^1.42.3",
     "react-typed": "^1.2.0",
+    "remark": "^15.0.1",
     "tsparticles-path-curves": "^1.42.3"
   },
   "devDependencies": {
