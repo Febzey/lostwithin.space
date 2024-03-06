@@ -1,5 +1,5 @@
 {
-  "homepage": "http://febzey.github.io/brayden.tech",
+  "homepage": "https://febzey.github.io/brayden.tech",
   "name": "braydentech",
   "private": true,
   "version": "0.0.0",
@@ -30,6 +30,7 @@
     "@types/react-scroll": "^1.8.3",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.4",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.5.4",
