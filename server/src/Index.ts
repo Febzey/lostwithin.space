@@ -21,8 +21,8 @@ server.setNotFoundHandler((request, reply) => {
 
 (async () => {
     try {
-        await server.listen(process.env.port)
-        console.log(`Server listening on port ${process.env.port}`)
+        await server.listen(4100)
+        console.log(`Server listening on port 4100`)
     } catch (err) {
         server.log.error(err);
         process.exit(1)

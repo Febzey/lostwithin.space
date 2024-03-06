@@ -5,28 +5,41 @@ import { FaArrowLeft, FaEye } from "react-icons/fa"
 import remark from 'remark';
 import grayMatter from 'gray-matter';
 
+interface BlogMetadata {
+    title: string,
+    summary: string,
+    published_date: string,
+    views: number,
+    slug: string
+}
 
 const BlogPost = () => {
     const { slug } = useParams();
     const [markdownContent, setMarkdownContent] = useState("");
+    const [meta, setMarkDownMeta] = useState<BlogMetadata>();
 
     useEffect(() => {
-        const fetchBlogContent = async () => {
-            try {
-                const response = await fetch(`/blogs/${slug}.md`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch blog content');
-                }
 
-                const fileContent = await response.text();
-                setMarkdownContent(fileContent);
-            } catch (error) {
-                console.error('Error fetching blog content:', error);
-            }
-        };
+        if (!slug) return;
+
+        const fetchBlogContent = async () => {
+            const markDown = import.meta.globEager(`/assets/blogs/*/*.md`, { assert: { type: "raw" } });
+            const metadatactx = import.meta.globEager(`/assets/blogs/*/*.json`, { assert: { type: "raw" } });
+
+            const blog = markDown["/assets/blogs/" + slug + "/blog.md"];
+            const meta = metadatactx["/assets/blogs/" + slug + "/metadata.json"]
+
+            setMarkdownContent(blog.toString());
+            setMarkDownMeta(JSON.parse(meta.toString()));
+
+            return
+
+        }
 
         fetchBlogContent();
     }, [slug]);
+
+
 
     if (!markdownContent) {
         return <div>Loading...</div>;
@@ -43,8 +56,8 @@ const BlogPost = () => {
             <div className="mt-24">
                 <div className="flex-row flex justify-between w-full p-1">
                     <div className="flex flex-col">
-                        <p>March 4th 2024</p>
-                        <span className="flex flex-row gap-1 items-center"><FaEye /> 20</span>
+                        <p>{meta?.published_date}</p>
+                        <span className="flex flex-row gap-1 items-center"><FaEye /> {meta?.views}</span>
                     </div>
                 </div>
 

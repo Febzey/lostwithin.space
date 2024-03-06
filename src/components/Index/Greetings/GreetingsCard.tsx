@@ -32,7 +32,7 @@ export default function GreetingCard() {
             <div className="flex flex-col w-full gap-4 relative">
 
                 <h1 className="text-xl text-white">Brayden Tschetter</h1>
-                <p className="text-white/90">23 year old mediocre software dev from Manitoba, Canada. Mainly a hobbyist with experience in web apps, databases, server management and some microservices. </p>
+                <p className="text-white/90">23 year old mediocre software dev from Manitoba, Canada. Self tought and mainly a hobbyist with experience in web apps, databases, server management and some microservices. </p>
                 <p className="text-white/90">I enjoy network analysis, golang, exploring and creating protocols, bots and security research, though my public projects may not reflect this many are private.</p>
                 <p className="text-white/90">I am sometimes available for occasional projects.  If you have something you would like made feel free to contact.  I can create and manage servers, create wep apps/websites from scratch, or even pen test your small businesses network to find weak points and vulnerabilities.   </p>
 
