@@ -1,11 +1,13 @@
 {
-  "name": "src",
+  "homepage": "http://febzey.github.io/brayden.tech",
+  "name": "braydentech",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open --port 3001",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@types/node": "^20.11.24",
