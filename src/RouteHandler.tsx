@@ -6,15 +6,13 @@ import Projects from './pages/projects';
 
 export default function RouteHandler() {
     return (
-        <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/blogs/:slug" element={<BlogPost />} />
-                    <Route path="/blogs" element={<BlogsList/>}/>
-                    <Route path="/projects" element={<Projects/>}/>
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/blogs/:slug" element={<BlogPost />} />
+                <Route path="/blogs" element={<BlogsList />} />
+                <Route path="/projects" element={<Projects />} />
+            </Routes>
+        </BrowserRouter>
     )
 };
