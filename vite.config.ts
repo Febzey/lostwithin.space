@@ -7,5 +7,5 @@ import mdPlugin from "vite-plugin-markdown"
 export default defineConfig({
   plugins: [react(), mdPlugin()],
   assetsInclude: ['**/*.md'], 
-  base: "/brayden.tech/"
+  base: "/"
 })

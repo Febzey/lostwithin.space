@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
 import { FaArrowLeft, FaEye } from "react-icons/fa"
-import remark from 'remark';
-import grayMatter from 'gray-matter';
 
 interface BlogMetadata {
     title: string,
@@ -23,8 +21,8 @@ const BlogPost = () => {
         if (!slug) return;
 
         const fetchBlogContent = async () => {
-            const markDown = import.meta.globEager(`/assets/blogs/*/*.md`, { assert: { type: "raw" } });
-            const metadatactx = import.meta.globEager(`/assets/blogs/*/*.json`, { assert: { type: "raw" } });
+            const markDown = import.meta.glob(`/assets/blogs/*/*.md`, { eager: true, as: "raw" });
+            const metadatactx = import.meta.glob(`/assets/blogs/*/*.json`, { eager: true, as: "raw" });
 
             const blog = markDown["/assets/blogs/" + slug + "/blog.md"];
             const meta = metadatactx["/assets/blogs/" + slug + "/metadata.json"]

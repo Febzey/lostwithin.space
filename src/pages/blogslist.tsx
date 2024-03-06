@@ -18,12 +18,13 @@ const BlogsList = () => {
     const nav = useNavigate();
 
     const importBlogMetadata = async () => {
-        const metadataContext = import.meta.globEager('/assets/blogs/*/metadata.json');
+        const metadataContext = import.meta.glob('/assets/blogs/*/metadata.json', { eager: true });
         console.log(metadataContext)
         const jsonModules = Object.values(metadataContext);
 
         for (const module of jsonModules) {
-            setBlogPosts(prev => [...prev, module.default]);
+            if (!module) continue;
+            setBlogPosts(prev => [...prev, (module as any).default]);
         }
     };
 
