@@ -49,7 +49,7 @@ const Index = () => {
             {/* <Particles params={config} className="block h-screen max-h-screen w-full absolute top-0 z-10" /> */}
 
             <div className="h-screen lg:w-1/3 w-[90%] mx-auto relative">
-                <NavBar />
+                {/* <NavBar /> */}
                 <GreetingCard />
             </div>
 
@@ -60,14 +60,33 @@ const Index = () => {
 export default Index;
 
 
-function NavBar() {
+export function NavBar() {
+
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const [darkMode, setDarkMode] = useState(storedTheme === 'dark' || prefersDarkMode);
+  
+    useEffect(() => {
+      document.documentElement.classList.toggle('dark', darkMode);
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    }, [darkMode]);
+  
+    const toggleTheme = () => {
+      setDarkMode(!darkMode);
+    };
+  
 
     return (
-        <div className="w-full h-[7%]  absolute z-50 bg-opacity-20">
-            <div className="flex mx-auto w-full items-center justify-between h-full text-2xl py-4">
-                <a href=""><FaEnvelope className="hover:text-sky-700 duration-200" /></a>
+        <div className=" h-[7%] w-full z-50 bg-opacity-20">
+            <div className="flex mx-auto lg:w-1/3 w-[90%] items-center justify-between h-full text-2xl py-4">
+                <a href="mailto:braydent1235@gmail.com"><FaEnvelope className="hover:text-sky-700 duration-200" /></a>
 
-                <FaMoon />
+                <button
+                    className="theme-toggle"
+                    onClick={toggleTheme}
+                >
+                    {darkMode ? <FaSun /> : <FaMoon />}
+                </button>
             </div>
 
         </div>

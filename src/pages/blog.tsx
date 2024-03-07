@@ -21,11 +21,11 @@ const BlogPost = () => {
         if (!slug) return;
 
         const fetchBlogContent = async () => {
-            const markDown = import.meta.glob(`/assets/blogs/*/*.md`, { eager: true, as: "raw" });
-            const metadatactx = import.meta.glob(`/assets/blogs/*/*.json`, { eager: true, as: "raw" });
+            const markDown = import.meta.glob(`/assets/blogs/*/*.md`, { eager: true, query: "?raw", import: "default"  });
+            const metadatactx = import.meta.glob(`/assets/blogs/*/*.json`, { eager: true, query: "?raw", import: "default"  });
 
-            const blog = markDown["/assets/blogs/" + slug + "/blog.md"];
-            const meta = metadatactx["/assets/blogs/" + slug + "/metadata.json"]
+            const blog = markDown["/assets/blogs/" + slug + "/blog.md"] as any;
+            const meta = metadatactx["/assets/blogs/" + slug + "/metadata.json"] as any
 
             setMarkdownContent(blog.toString());
             setMarkDownMeta(JSON.parse(meta.toString()));
@@ -44,7 +44,7 @@ const BlogPost = () => {
     }
 
     return (
-        <div className="w-full p-6 lg:w-3/6 mx-auto ">
+        <div className="w-full p-6 lg:w-3/6 mx-auto min-h-screen">
             <Link to={"/blogs"} className="flex flex-row gap-2 items-center underline-offset-4 duration-150 hover:text-neutral-500">
                 <FaArrowLeft />
                 Other Posts
@@ -53,7 +53,7 @@ const BlogPost = () => {
 
             <div className="mt-24">
                 <div className="flex-row flex justify-between w-full p-1">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col italic text-neutral-400">
                         <p>{meta?.published_date}</p>
                         <span className="flex flex-row gap-1 items-center"><FaEye /> {meta?.views}</span>
                     </div>

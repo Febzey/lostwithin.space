@@ -124,7 +124,7 @@ const ProjectsCard = () => {
 
     return (
         <div className="w-full ">
-            <Link to={"/"} className="flex flex-row gap-2 items-center underline-offset-4 duration-150 hover:text-neutral-500">
+            <Link to={"/"} className="flex flex-row gap-2 items-center underline-offset-4 duration-150 dark:hover:text-neutral-500">
                 <FaArrowLeft />
                 Home
             </Link>
@@ -135,14 +135,14 @@ const ProjectsCard = () => {
             </div>
             <ul className="flex flex-col gap-10 w-full mx-auto">
                 {projects.map((project, index) => (
-                    <li key={index} className="flex flex-col gap-8 lg:flex-row items-center justify-start border-b-[1px] border-b-zinc-600 py-60 w-full">
+                    <li key={index} className="flex flex-col gap-8 lg:flex-row items-center justify-start border-b-[1px] dark:border-b-zinc-600 border-b-zinc-300 py-60 w-full">
 
                         <div className="flex flex-col w-auto gap-4">
 
 
                             <div className="">
-                                <h4 className="text-white font-bakbak text-xl uppercase">{project.title}</h4>
-                                <p className="text-neutral-100 font-poppins">{project.description}</p>
+                                <h4 className=" font-bakbak text-xl uppercase">{project.title}</h4>
+                                <p className="text-neutral-800 dark:text-neutral-100 font-poppins">{project.description}</p>
                             </div>
 
                             <div className="w-full h-full flex flex-col gap-4">
@@ -157,7 +157,7 @@ const ProjectsCard = () => {
                                     <div className=" flex flex-row items-center justify-start gap-2 flex-wrap mr-auto">
                                         {
                                             project.stack.map((img, index) => (
-                                                <img src={img} alt={"technology"} width={40} className="p-2 bg-zinc-800 rounded-full" />
+                                                <img src={img} alt={"technology"} width={40} className="p-2 dark:bg-zinc-800 bg-zinc-300 rounded-full" />
                                             ))
                                         }
                                     </div>
@@ -172,8 +172,8 @@ const ProjectsCard = () => {
 
                         </div>
 
-                        <a href={project.github} target="_blank" className="mr-auto lg:ml-auto mb-4 lg:mr-4 text-3xl duration-150 hover:text-white/50">
-                            <FaLink />
+                        <a href={project.github} target="_blank" className="mr-auto lg:ml-auto mb-4 lg:mr-4 text-3xl duration-150 dark:hover:text-white/50">
+                            <FaLink className="dark:text-white text-zinc-600"/>
                         </a>
                     </li>
                 ))}
