@@ -46,10 +46,10 @@ const BlogsList = () => {
                         return (
                             <div key={key} className="w-full flex flex-col gap-3 cursor-pointer" onClick={() => nav(`/blogs/${preview.slug}`)}>
 
-                                <div className="flex flex-row-reverse justify-between w-full ">
+                                <div className="flex flex-col lg:flex-row-reverse justify-between w-full ">
 
-                                    <div className="flex flex-col min-w-44  ml-auto text-right italic text-neutral-400">
-                                        <div className="flex flex-row gap-1 ml-auto items-center">
+                                    <div className="flex flex-col lg:min-w-44  mr-auto lg:ml-auto text-right italic text-neutral-400">
+                                        <div className="flex flex-row gap-1 mr-auto lg:ml-auto items-center">
                                             {preview.views}
                                             <FaEye />
                                         </div>
