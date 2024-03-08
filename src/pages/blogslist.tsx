@@ -48,8 +48,8 @@ const BlogsList = () => {
 
                                 <div className="flex flex-col lg:flex-row-reverse justify-between w-full ">
 
-                                    <div className="flex flex-col lg:min-w-44  mr-auto lg:ml-auto text-right italic text-neutral-400">
-                                        <div className="flex flex-row gap-1 mr-auto lg:ml-auto items-center">
+                                    <div className="flex flex-col lg:min-w-44 mr-auto lg:mr-0 lg:ml-auto text-right italic text-neutral-400">
+                                        <div className="flex flex-row gap-1  mr-auto lg:ml-auto items-center">
                                             {preview.views}
                                             <FaEye />
                                         </div>
