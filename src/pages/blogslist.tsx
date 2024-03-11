@@ -12,6 +12,7 @@ interface BlogMetadata {
     slug: string
 }
 
+
 const BlogsList = () => {
 
     const [blogPosts, setBlogPosts] = useState<BlogMetadata[]>([]);

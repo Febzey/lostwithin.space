@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
 import { FaArrowLeft, FaEye } from "react-icons/fa"
 
@@ -16,6 +16,10 @@ const BlogPost = () => {
     const [markdownContent, setMarkdownContent] = useState("");
     const [meta, setMarkDownMeta] = useState<BlogMetadata>();
 
+    const { pathname } = useLocation();
+
+    const [views, setViews] = useState(0)
+
     useEffect(() => {
 
         if (!slug) return;
@@ -31,10 +35,27 @@ const BlogPost = () => {
             setMarkDownMeta(JSON.parse(meta.toString()));
 
             return
+        }
 
+        const fetchBlogViews = async () => {
+            try {
+                const url = import.meta.env.VITE_ANALYTICS_URL;
+                const cleanedPathname = pathname.replace(/^#/, '');
+                const urlToSearch = `${window.location.host}${cleanedPathname}`
+                console.log(urlToSearch)
+                const response = await fetch(`${url}/views?url=${urlToSearch}`)
+                if (response.ok) {
+                    const data = await response.json();
+                    setViews(data.view_count)
+                }
+
+            } catch (err) {
+
+            }
         }
 
         fetchBlogContent();
+        fetchBlogViews();
     }, [slug]);
 
 
@@ -55,7 +76,7 @@ const BlogPost = () => {
                 <div className="flex-row flex justify-between w-full p-1">
                     <div className="flex flex-col italic text-neutral-400">
                         <p>{meta?.published_date}</p>
-                        <span className="flex flex-row gap-1 items-center"><FaEye /> {meta?.views}</span>
+                        <span className="flex flex-row gap-1 items-center"><FaEye />{views}</span>
                     </div>
                 </div>
 
