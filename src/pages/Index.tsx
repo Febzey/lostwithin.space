@@ -48,7 +48,7 @@ const Index = () => {
         <div >
             {/* <Particles params={config} className="block h-screen max-h-screen w-full absolute top-0 z-10" /> */}
 
-            <div className="h-screen lg:w-1/3 w-[90%] mx-auto relative">
+            <div className="">
                 {/* <NavBar /> */}
                 <GreetingCard />
             </div>

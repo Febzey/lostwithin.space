@@ -1,73 +1,75 @@
 
-# Unveiling Manitoba's Educational Tech Ensemble: Behind the Digital Curtain
+# Peeking Behind the Curtain: A Casual Guide to Network Recon in Manitoba's Education System
 
-Ever wondered about the underlying technology and network infrastructure that seamlessly keeps Manitoba's educational system running? Let's take a behind-the-scenes look at the tech ensemble orchestrating the province's educational landscape.
-\
-\
-My exploration kicked off by browsing through the ESD's (Evergreen School Division) website, I initially was only curious about who operates and maintains their front end website, I quickly seen it was a company named "schoolbundle.com", not too interesting but took note of that anyways. From there I dug deeper, looking into various domains associated with the school system. 
-\
-\
-Using network scanning tools, I identified IP addresses and probed open ports to gather information about the servers and services in use. Nmap and telnet were handy for this. As I uncovered more details, I explored the relationships between different domains and IPs, I quickly stumbled upon a directory cataloging every single server utilized by each school division in Manitoba. This directory, a compiled tool that systematically scans the entire internet at regular intervals, revelead a wealth of information about the technological infrastructure supporting the province's educational institutions. Through this resource, I gained insights into the specific servers, services and configurations employed across different school divisions. The data included details about IP addresses, open ports, and the technologies underlying the educational network. 
-\
-\
-For instance, I found a VPN (Virtual Private Network) portal hosted under the IP 69.46.108.222, which I think should be accessed through secure.esd.ca (216.73.73.172). Although direct access was restricted, I established a connection to the VPN portal using an IP address that had relation to the service. Further digging revealed the involvement of companies like [Merlin](https://www.merlin.ca), [Sylogist](https://www.Sylogist.com), [SchoolBundle](https://www.SchoolBundle.ca), [PerfSONAR](https://www.perfsonar.net),  and [Q9](https://ca.linkedin.com/company/q9-networks) in managing various aspects of the educational tech infrastructure, along with many different software used. The process involved a mix of website exploration, network scanning, and connecting the dots between different online elements.
+Ever been curious about what goes on behind the scenes in a large network? I recently took a dive into the tech setup behind Manitoba’s educational institutions—and here’s a look at my process and findings.
+
+&nbsp;
+&nbsp;
+
+## Where It All Started
+I kicked things off by checking out the Evergreen School Division website. My first question was simple: who’s running their front end? Turns out it’s managed by a company (schoolbundle.com). Not a huge deal on its own, but it gave me a starting point.
+
+&nbsp;
+&nbsp;
+
+## Tools
+with basic network scanning tools like Nmap and Telnet, I began mapping out the network. I looked up IP addresses, scanned for open ports, and tried to piece together which services were up and running. What really caught my eye was a directory listing every server used by the various school divisions in Manitoba. This kind of resource shows you:
+
+&nbsp;
+&nbsp;
+
+## IP addresses & Domains: How different services and servers connect.
+Open Ports: A hint at what protocols or services are in play.
+Tech Stack: Some clues about what software and hardware are being used.
+
+&nbsp;
+&nbsp;
+
+## Key Findings
+VPN Portals & Private Networks
+One interesting find was a VPN portal (IP 69.46.108.222) that appears linked to secure.esd.ca (216.73.73.172). Even though direct access was blocked, it confirmed that each school division uses its own private network. The VPN setup is likely handled by a company called Sylogist—suggesting they’re not just providing the portal but also backing the whole secure connection process.
+
+&nbsp;
+&nbsp;
+
+## The Role of “Merlin”
+At the heart of the setup is something called Merlin. This appears to be a branch of the Manitoba Government coordinating network services for schools. Although details are a bit murky, Merlin seems to act as the central hub, working with various vendors like Sylogist and even Q9 Networks (which is linked to Bell) to keep things running smoothly.
+
+&nbsp;
+&nbsp;
+
+## Email & Media Gateways
+I noticed several domains hinting at Microsoft’s influence—subdomains like “stu.” for students and “fs.” for staff, along with others like “officewebapps” and “autodiscover.” These likely point to secure email and media gateways that handle everything from spam filtering to malware scans before the data makes its way into the network.
+
+&nbsp;
+&nbsp;
+
+## Network Monitoring with Perfsonar
+Another cool piece was a Perfsonar instance—basically a network monitoring tool keeping an eye on traffic, errors, and overall network health. This instance ran on a beefy Dell PowerEdge R430 with AlmaLinux 9.3. It’s one thing to know your network is alive; it’s another to see it monitored in real time.
+
+&nbsp;
+&nbsp;
+
+## GeoFeed & IP Allocation
+A neat discovery was a “geofeed” subdomain that triggered an automatic download of a CSV file. This file lists IP blocks by postal code, province, and city—pretty much laying out where the network’s assets are spread across Manitoba. From what I gathered, a lot of these IPs are linked to areas around the University of Manitoba.
+
+&nbsp;
+&nbsp;
+
+## Admin Portals: Observium & Others
+I also came across admin interfaces—labeled “Portal” (likely short for a forms-based login) and “Observium.” These dashboards are the control centers for managing network services. While they’re standard fare, I did note that they rely on basic text-based authentication, which raises some security flags if there aren’t additional safeguards in place.
+
+&nbsp;
+&nbsp;
+
+### Wrapping It Up
+To sum up, this exploration wasn’t about uncovering some earth-shattering secret. Instead, it was a practical exercise in network reconnaissance, showing how public tools and a bit of curiosity can reveal a lot about how large networks—like those supporting Manitoba’s education system—are put together.
 
 
-## Merlin.ca
-At the heart of it all is Merlin, the conductor of Manitoba's educational infrastructure. A branch of the Manitoba Government. They provide direction and management in the educational use of networks, acting as a broker of services. Merlin was established in 1995 as special operating agency with the Department of Education. It was formed as a facilitating body to coordinate the delivery of technology services to the education community across Manitoba. Merlin currently operates under the Department of Central Services. Merlin uses a variaty of partners and services to get their job done, which we talk about below.
+&nbsp;
+- **Start Small:** Begin with public websites and domain lookups.
+- **Use the Right Tools:** Nmap, Telnet, and similar tools can give you a clear picture of active services.
+- **Connect the Dots:** Look for patterns—like the relationship between IP addresses and geographic data.
+- **Stay Ethical:** Remember, any recon work should always be done legally and ethically, with proper permissions.
 
-
-## Azure Front Door: Emails and Media
-During my bordem I found multiple domains and IPs pointing towards some Azure Edge and Outlook domains, soon finding out the Student and Staff use seperate subdomains "stu." and "fs.". Both domains lead to a protective gateway intricately linked with 'Microsoft Exhange SMTP." (Secure Message Transfer Protocol). This frontline service meticulously screens incoming emails and media for security, including spam filtering and malware scans before seamlessly transmitting them to the core infrastructure.
-\
-\
-I uncovered various domains and IPs associated with email and media services, including '0365.,' 'officewebapps.,' 'autodiscover.,' 'mail.,' and 'media.' Notably, 'sitegovern.' appears to be an administrative access route. While some domains are not directly accessible from the external internet, their visibility is maintained through DNS records, hinting at potential proxy setups. This suggests these domains might be intended for use within a Virtual Private Network (VPN) or accessible via a single IP address, enhancing security and controlled access.
-
-
-## SyLogist.com's VPN Service
-So earlier I mentioned the VPN and how I found the VPN Portal to one of the School Divisions Private Networks, well first off what even is a "VPN"? It stands for Virtual Private Network, and the "VPN Portal" is essentially a door to that network. Each school division having its own network ensures a dedicated and secure connection for internal communication and access to confidential resources, safeguarding sensitive educational information and maintaining privacy.
-\
-\
-Syslogist, the company associated with the VPN service, seems to play a significant role in ensuring the security and functionality of these private networks. Their involvement may extend beyond just providing the VPN Portal; they could be responsible for the infrastructure and backend support that makes the VPN service operational. This could include aspects like server management, security protocols and network configurations to guarentee a seamless and secure connection for users.
-\
-\
-The discovery of Sylogist's IP adresses in the DNS and IP lookups highlights their direct involvement in the VPN infrastructure. While merlin may act as a central coordinator, partnering with specialized companies like Sylogist ensures that the services are profesionally managed and maintained. 
-
-
-## Q9.net (Owned by Bell) - IT Management
-I seen that the company Q9 had some domains pointed to some IP's associated with the Private Network infrastructure for school divisions, Q9 being one of Canada's largest infrastructure service providers and being owned by BELL is no surprise that they would be involved. This presence indicates that Q9 Networks could potentially manage the servers infrastructure supporting the Private Networks and also providing IT services remotely, It is actually not 100% clear on the full inolvement of Q9 and which services they maintain for this entire operation.
-
-
-## Perfsonar, network monitoring and educational research
-So during all of this I came across what seems to be a centralized server hosting a Perfsonar instance, a very powerful network monitoring tool which I believe is monitoring traffic from each school division. after doing some searching I found a none authenticated user panel giving insights into the network, the server hosting the Perfsonar instance exhibits a robust 10 Gb/s speed, indicating a high capacity infrastructure. 
-\
-\
-This tool offers valuable insights into various network parameters, including network health, packet transmission, and error metrics. Notably, our investigation revealed that the server operating Perfsonar is a powerful server; PowerEdge R430 manufactured by Dell, showcasing impressive computing capabilities. It appears to runs on the AlmaLinux 9.3 operating system.
-\
-\
-Perfsonar is a crucial tool for advanced network capabilities in educational research. After finding a comprehensive directory of public Perfsonar instances, complete with a graphical map, it became clear that this tool is widely used in the USA and Europe. However, its presence in Canada is more localized, with only a handful of instances identified in the Yukon, Manitoba, and various parts of British Columbia. Perfsonar really is a comprehensive and large tool, I can't really begin to explain the entirety of its use case and how it's beneficial for research all in this blog, read more at their website [Merlin](https://www.merlin.ca).
-
-
-## GeoFeed And Allocated IP Addresses
-In our pursuit of understanding the intricacies of Manitoba's school network infrastructure, a pretty cool moment unfolded as I stumpled upon a subdomain "geofeed", thought this was neat so I explored it. Surprisingly, upon accessing this domain, an automatic download of a CVS file occured, adding an extra layer of mystery to our exploration. This unexpected file appears to be a key to unraveling the digital geography of IP ranges linked to numerious school divisions in the region. 
-\
-\
-Looking further into this newly found geofeed file, I seen each IP block was associated with a Postal Code, Provice and City, in our case; Winnipeg, Manitoba since we are looking into Merlin which is Manitoba based, Doing a quick search of the Postal code it appears the main server infrastructure is hosted at, or right next to the University Of Manitoba.
-\
-\
-So with this information in hand, we now have a list of every IP address Merlin has allocated to Manitoba's school divisions, offering a unique glimpse into the digital landscape that supports education across the province.
-
-## Observium And Administrative Portals
-Two portals where discovered that are intented to be used by administrators at Merlin, being a subdomain "Portal" which resolves to another subdomain "fba" which most likely stands for "Forms-Based Authentication" another subdomain found was "Observium", both subdomains lead to different user interfaces. Not to mention the VPN portal. All contain a login form for which seems to be an administrator dashboard of some type.
-\
-\
-in trying to assess the security of these portals, it is noteworthy that both "Portal" and "Observium" employ text-based authentication, While text-based authentication is a conventional method, it could pose security concerns, especially without any additional layers such as two-factor authentication.
-
-## Summary
-So to summarize our jouney through Manitoba's educational network infrastructure, we uncovered a complex web of technologies and services, all working together to sustain the seamless functioning of Manitoba's educational system. Our exploration started with examining Evergreen School Division's web presence, swiftly leading us to the intricate network of servers and services utilized across the province.Through this we learnt at the core is Merlin, a key player that orchestrates collaborative efforts with companies like sylogist, Q9, Perfsonar and more. 
-\
-\
-Further the discovery of Perfsonar provided insights into robust network monitoring capabilities, enhancing the overall health of Manitoba's educational network. The GeoFeed and allocated IP addresses added a geographical layer, connecting specific details to the University of Manitoba. However, our observation of Observium and  the Portals raised questions about the security practices, especially with the use of text-based authentication for administrator portals.
-\
-\
-While our summary briefly touched up on some of the underlying services and technologies, there might be other services under the hood that we couldn't access without the right permissions. However, what we did uncover provides a solid overview. Each topic we discussed has the potential for much deeper exploration, and you'll likely find much more detailed documentation for the individual services if you decide to dive in. This overview is just the starting point, leaving plenty of room for those curious to dig deeper into Manitoba's education tech ensemble.
+This guide is just the starting point. There’s plenty more to uncover if you’re curious, but even a quick peek like this shows the complexity behind what most of us take for granted.

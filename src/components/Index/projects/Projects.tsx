@@ -26,37 +26,8 @@ import snapur from "../../../images/projects/snapur.png"
 import genweb from "../../../images/projects/Genweb.png"
 import { Link } from 'react-router-dom';
 
-
-
-
 const ProjectsCard = () => {
     const [projects] = useState([
-        {
-            title: "Scriber",
-            description: "A blog post app with an ai helper, optimizing in SEO and SSR techniques, built with next and typescript.",
-            github: "https://github.com/febzey/scriber",
-            stack: [typescript, react, next, vscode, html, tailwind, node, git, mysql],
-            def: "/ˈskraɪbər/",
-            image: scriber,
-            date: "April 7th, 2020",
-        },
-        {
-            title: "gotime",
-            description: "A minimal parser, formalizer and manipulator for time durations and dates in nodejs.",
-            github: "https://github.com/Febzey/gotime",
-            stack: [go, git, vscode],
-            def: "",
-            image: gotime_pic,
-            date: "December 19th, 2021",
-        },
-        {
-            title: "React Boilerplate",
-            description: "An easy to use, beginner friendly react/fastify backend boilerplate.",
-            github: "https://github.com/febzey/rf-boiler",
-            stack: [react, typescript, node, git, vscode],
-            def: "",
-            date: "May 3rd, 2019",
-        },
         {
             title: "MySQL Parser",
             description: "A web based SQL tool to perform database queries via user interface and restful API.",
@@ -66,15 +37,6 @@ const ProjectsCard = () => {
             image: parser_pic,
             date: "June 16th, 2020",
 
-        },
-        {
-            title: "www.eusurvival.com",
-            description: "A React web app made for a European based Minecraft server called eusurvival.com",
-            github: "https://github.com/febzey/eusurvival.com",
-            stack: [javascript, express, react, tailwind, nginx, vite, git, vscode],
-            def: "",
-            image: eusurvival_pic,
-            date: "September 25th, 2020",
         },
         {
             title: "ForestBot",
@@ -103,83 +65,43 @@ const ProjectsCard = () => {
             image: snapur,
             date: "June 11th, 2021",
         },
-        {
-            title: "Genweb",
-            description: "Web service created for the intent of targeting small and local business to help grow their online Prescence",
-            github: "https://github.com/febzey/genweb",
-            stack: [next, vscode, html, tailwind, node, git, mysql, typescript, react],
-            def: "",
-            image: genweb,
-            date: "August 1st, 2020",
-        },
-        {
-            title: "Portfolio",
-            description: "This website.",
-            github: "https://github.com/febzey/snapur",
-            stack: [html, tailwind, react, next, node, git, mysql, typescript, vscode],
-            def: "",
-            date: "March 5th 2021",
-        },
     ])
 
     return (
-        <div className="w-full ">
-            <Link to={"/"} className="flex flex-row gap-2 items-center underline-offset-4 duration-150 dark:hover:text-neutral-500">
+        <div className="w-full">
+            <Link to={"/"} className="flex flex-row gap-2 items-center underline hover:text-green-300 mb-4">
                 <FaArrowLeft />
                 Home
             </Link>
-            <div className="mr-auto flex gap-1 flex-col mt-24">
+            <div className="mr-auto flex gap-1 flex-col mt-4 mb-10">
                 <h2 className="text-3xl uppercase">Projects</h2>
                 <p className="text-neutral-300">a collection of projects/work I've done in the past.</p>
                 <p className="text-neutral-500 text-sm">(note: this is not a complete list. To see all my public projects/work visit my github page.)</p>
             </div>
             <ul className="flex flex-col gap-10 w-full mx-auto">
                 {projects.map((project, index) => (
-                    <li key={index} className="flex flex-col gap-8 lg:flex-row items-center justify-start border-b-[1px] dark:border-b-zinc-600 border-b-zinc-300 py-60 w-full">
-
+                    <li key={index} className="flex flex-col gap-8 lg:flex-row items-center justify-start border-b-[1px] border-green-700 py-4 w-full">
                         <div className="flex flex-col w-auto gap-4">
-
-
-                            <div className="">
-                                <h4 className=" font-bakbak text-xl uppercase">{project.title}</h4>
-                                <p className="text-neutral-800 dark:text-neutral-100 font-poppins">{project.description}</p>
+                            <div>
+                                <h4 className="text-xl uppercase">{project.title}</h4>
+                                <p className="text-neutral-300">{project.description}</p>
                             </div>
-
                             <div className="w-full h-full flex flex-col gap-4">
-                                {/* {
-                                    project.image &&
-                                    <div className="rounded-md bg-zinc-600 bg-opacity-25 p-2">
-                                        <img src={project.image} className="bg-cover h-auto w-full"></img>
-                                    </div>
-                                } */}
-
-                                <div className="w-full h-full flex flex-col  items-center gap-4">
-                                    <div className=" flex flex-row items-center justify-start gap-2 flex-wrap mr-auto">
-                                        {
-                                            project.stack.map((img, index) => (
-                                                <img src={img} alt={"technology"} width={40} className="p-2 dark:bg-zinc-800 bg-zinc-300 rounded-full" />
-                                            ))
-                                        }
-                                    </div>
-
+                                <div className="w-full h-full flex flex-col items-center gap-4">
                                     <div className="italic text-zinc-500 mr-auto">
                                         {project.date}
                                     </div>
-
                                 </div>
                             </div>
-
-
                         </div>
-
-                        <a href={project.github} target="_blank" className="mr-auto lg:ml-auto mb-4 lg:mr-4 text-3xl duration-150 dark:hover:text-white/50">
-                            <FaLink className="dark:text-white text-zinc-600"/>
+                        <a href={project.github} target="_blank" className="mr-auto lg:ml-auto mb-4 lg:mr-4 text-3xl duration-150 hover:text-green-300">
+                            <FaLink className="text-green-400"/>
                         </a>
                     </li>
                 ))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default ProjectsCard;

@@ -10,8 +10,7 @@ module.exports = {
         "sprinkle": "url('./src/images/backgrounds/sprinkle.svg')",
       },
       fontFamily: {
-        poppins: "'Poppins', 'sans-serif'",
-        'bakbak': ['Bakbak One', 'cursive'],
+        inco: ["Inconsolata", 'serif'],
       }
     },
   },

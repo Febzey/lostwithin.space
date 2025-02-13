@@ -1,5 +1,4 @@
 {
-  "homepage": "https://febzey.github.io/brayden.tech",
   "name": "braydentech",
   "private": true,
   "version": "0.0.0",
@@ -11,6 +10,7 @@
   },
   "dependencies": {
     "@types/node": "^20.11.24",
+    "axios": "^1.7.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",

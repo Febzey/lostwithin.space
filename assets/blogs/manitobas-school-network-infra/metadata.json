@@ -1,7 +1,9 @@
 {
-    "title": "Unveiling Manitoba's Educational Tech Ensemble: Behind the Digital Curtain",
-    "summary": "Ever wondered about the underlying technology and network infrastructure that seamlessly keeps Manitoba's educational system running? Let's take a behind-the-scenes look at the tech ensemble orchestrating the province's educational landscape.",
+    "title": "Peeking Behind the Curtain: A Casual Guide to Network Recon in Manitoba's Education System",
+    "summary": "Ever been curious about what goes on behind the scenes in a large network? I recently took a dive into the tech setup behind Manitoba’s educational institutions—and here’s a look at my process and findings.",
     "published_date": "March 4th 2024",
     "views": 10,
-    "slug": "manitobas-school-network-infra"
+    "slug": "manitobas-school-network-infra",
+    "id": 1,
+    "author": "Febz"
 }
