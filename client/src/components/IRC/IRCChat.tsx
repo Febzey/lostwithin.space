@@ -21,7 +21,7 @@ const IRCChat = () => {
 
     useEffect(() => {
         if (isSignedIn) {
-            ws.current = new WebSocket('ws://localhost:3939/irc');
+            ws.current = new WebSocket('wss://lostwithin.space/irc');
             ws.current.onopen = () => {
                 console.log('WebSocket connected');
                 ws.current?.send(JSON.stringify({ type: "validate", key, client: "website" }));
