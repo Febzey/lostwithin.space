@@ -42,7 +42,7 @@ export default class Api {
         });
 
         this.server.register(URLShortenerController, {
-            prefix: "/url",
+            prefix: "/u",
         });
 
         this.server.setNotFoundHandler((request, reply) => {

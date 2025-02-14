@@ -14,7 +14,7 @@ const UrlShortenerPage = () => {
         setShortenedUrl("");
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL_API}/url/shorten`, {
+            const response = await fetch(`${import.meta.env.VITE_URL_API}/u/shorten`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

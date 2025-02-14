@@ -17,7 +17,7 @@ const URLShortenerController: FastifyPluginCallback = (server, opts, done) => {
                 return reply.status(400).send({ error: "Original URL is required" });
             }
 
-            const shortenedUrl = `https://lostwithin.space/${randomBytes(3).toString("hex")}`;
+            const shortenedUrl = `https://lostwithin.space/u/${randomBytes(3).toString("hex")}`;
             const ip = request.ip;
             const createdAt = new Date().toISOString().slice(0, 19).replace('T', ' '); // Convert to MySQL DATETIME format
 
@@ -35,8 +35,9 @@ const URLShortenerController: FastifyPluginCallback = (server, opts, done) => {
     server.get("/:shortenedUrl", async (request, reply) => {
         try {
             const { shortenedUrl } = request.params as { shortenedUrl: string };
-            const [rows] = await db.query<URLRecord[] | any>("SELECT * FROM url_shortener WHERE shortenedUrl = ?", [`https://lostwithin.space/${shortenedUrl}`]);
-
+            console.log(shortenedUrl, " shortened")
+            const [rows] = await db.query<URLRecord[] | any>("SELECT * FROM url_shortener WHERE shortenedUrl = ?", [`https://lostwithin.space/u/${shortenedUrl}`]);
+            console.log(rows, " rows")
             if (rows.length === 0) {
                 return reply.status(404).send({ error: "Shortened URL not found" });
             }
