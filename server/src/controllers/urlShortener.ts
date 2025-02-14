@@ -35,7 +35,7 @@ const URLShortenerController: FastifyPluginCallback = (server, opts, done) => {
     server.get("/:shortenedUrl", async (request, reply) => {
         try {
             const { shortenedUrl } = request.params as { shortenedUrl: string };
-            const [rows] = await db.query<URLRecord[] | any>("SELECT * FROM url_shortener WHERE shortenedUrl = ?", [`${request.protocol}://${request.hostname}/${shortenedUrl}`]);
+            const [rows] = await db.query<URLRecord[] | any>("SELECT * FROM url_shortener WHERE shortenedUrl = ?", [`https://lostwithin.space/${shortenedUrl}`]);
 
             if (rows.length === 0) {
                 return reply.status(404).send({ error: "Shortened URL not found" });
