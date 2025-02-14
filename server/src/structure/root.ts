@@ -55,7 +55,7 @@ export default class Api {
     public async start() {
         try {
             await this.server.listen({ port: Number(process.env.port) });
-            console.log("Server is running on http://localhost:3000");
+            console.log("Server is running on http://localhost:", process.env.port);
         } catch (err) {
             console.log(err, "err")
             this.server.log.error(err);
