@@ -23,7 +23,7 @@ export default class Api {
     private irc: IRC;
 
     constructor() {
-        this.server = fastify({ logger: false });
+        this.server = fastify({ logger: false, trustProxy: true });
         this.server.register(cors, { origin: true, methods: ["GET", "POST"] });
         this.server.register(websocket);
         this.irc = new IRC(this.server);
