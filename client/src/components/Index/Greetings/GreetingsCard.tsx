@@ -19,7 +19,7 @@ export default function GreetingCard() {
     const [serverStats, setServerStats] = useState({
         uptime: "69 days, 4 hours, 20 minutes",
         cpu: "8x Intel Core i7 @ 3.90GHz",
-        gpu: "NVIDIA Tesla T4",
+        gpu: "AMD Radeon Instinct MI200",
         memory: "12 GB / 16 GB (75%)",
         disk: "250 GB / 512 GB (48%)",
         processes: 213,
@@ -30,56 +30,48 @@ export default function GreetingCard() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setServerStats({
-                uptime: `${getRandomInt(50, 100)} days, ${getRandomInt(0, 23)} hours, ${getRandomInt(0, 59)} minutes`,
+            setServerStats(prevStats => ({
+                ...prevStats,
                 cpu: "8x Intel Core i7 @ 3.90GHz",
-                gpu: "NVIDIA Tesla T4",
                 memory: `${getRandomInt(8, 16)} GB / 16 GB (${getRandomInt(50, 100)}%)`,
-                disk: `${getRandomInt(200, 500)} GB / 512 GB (${getRandomInt(30, 60)}%)`,
+                disk: `952 GB / 16 TB (48%)`,
                 processes: getRandomInt(200, 300),
-                ssh: `Active connections: ${getRandomInt(1, 5)}`,
-                ip: "192.168.1.101",
                 loadAverage: `${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}`
-            });
+            }));
         }, 1000);
 
         return () => clearInterval(interval);
     }, []);
 
-    useEffect(() => {
-        if (outputRef.current) {
-            outputRef.current.scrollTop = outputRef.current.scrollHeight;
-        }
-    }, [output]);
-
     const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
+            let newOutput = [...output];
             if (command.trim() === "help") {
-                setOutput([...output, "Available commands: help, echo [message], clear, add, sub, mul, div, date, ls, cwd"]);
+                newOutput = [...newOutput, "Available commands: help, echo [message], clear, add, sub, mul, div, date, ls, cwd"];
             } else if (command.startsWith("echo ")) {
-                setOutput([...output, command.slice(5)]);
+                newOutput = [...newOutput, command.slice(5)];
             } else if (command.trim() === "clear") {
-                setOutput([]);
+                newOutput = [];
             } else if (command.startsWith("add ")) {
                 const [_, num1, num2] = command.split(" ");
                 const result = parseFloat(num1) + parseFloat(num2);
-                setOutput([...output, `Result: ${result}`]);
+                newOutput = [...newOutput, `Result: ${result}`];
             } else if (command.startsWith("sub ")) {
                 const [_, num1, num2] = command.split(" ");
                 const result = parseFloat(num1) - parseFloat(num2);
-                setOutput([...output, `Result: ${result}`]);
+                newOutput = [...newOutput, `Result: ${result}`];
             } else if (command.startsWith("mul ")) {
                 const [_, num1, num2] = command.split(" ");
                 const result = parseFloat(num1) * parseFloat(num2);
-                setOutput([...output, `Result: ${result}`]);
+                newOutput = [...newOutput, `Result: ${result}`];
             } else if (command.startsWith("div ")) {
                 const [_, num1, num2] = command.split(" ");
                 const result = parseFloat(num1) / parseFloat(num2);
-                setOutput([...output, `Result: ${result}`]);
+                newOutput = [...newOutput, `Result: ${result}`];
             } else if (command.trim() === "date") {
-                setOutput([...output, new Date().toString()]);
+                newOutput = [...newOutput, new Date().toString()];
             } else if (command.trim() === "ls") {
-                setOutput([...output, 
+                newOutput = [...newOutput, 
                     "├── etc/",
                     "│   ├── nginx/",
                     "│   ├── ssh/",
@@ -87,13 +79,19 @@ export default function GreetingCard() {
                     "└── home/",
                     "    ├── user/",
                     "    └── rootcorp/"
-                ]);
+                ];
             } else if (command.trim() === "cwd") {
-                setOutput([...output, "rootcorp/home"]);
+                newOutput = [...newOutput, "rootcorp/home"];
             } else {
-                setOutput([...output, `Command not found: ${command}`]);
+                newOutput = [...newOutput, `Command not found: ${command}`];
             }
+            setOutput(newOutput);
             setCommand("");
+            setTimeout(() => {
+                if (outputRef.current) {
+                    outputRef.current.scrollTop = outputRef.current.scrollHeight;
+                }
+            }, 0);
         }
     };
 
@@ -108,33 +106,59 @@ export default function GreetingCard() {
 
                 {/* Main Body */}
                 <div ref={outputRef} className="p-4 flex-grow text-sm space-y-4 overflow-y-auto">
-                    <div className="flex flex-row justify-between">
+                    <div className="flex flex-col md:flex-row justify-between">
                         <div className="space-y-1">
                             <p>$ <Link className="underline hover:text-blue-300" to="/projects">/projects</Link></p>
                             <p>$ <Link className="underline hover:text-blue-300" to="/blogs">/blogs</Link></p>
                             <p>$ <Link className="underline hover:text-blue-300" to="/vpn">/vpn</Link></p>
                             <p>$ <Link className="underline hover:text-blue-300" to="/irc">/IRC</Link></p>
                             <p>$ <Link className="underline hover:text-blue-300" to="/shortener">/shortener</Link></p>
-
-                            {/* <p>$ <Link className="underline hover:text-blue-300" to="/directories">/directories</Link></p>
-                            <p>$ <Link className="underline hover:text-blue-300" to="/img">/data</Link></p> */}
                         </div>
 
-                        <pre>
-{`+------------------------------------------------+
- Rootcorp 2.0.1                                 
- Kernel: 7.2.19-virtual                         
- Uptime: 690 days, 4 hours, 20 minutes  
- CPU: ${serverStats.cpu.padEnd(40, ' ')}        
- GPU: ${serverStats.gpu.padEnd(40, ' ')}        
- Memory: ${serverStats.memory.padEnd(40, ' ')}  
- Disk: ${serverStats.disk.padEnd(40, ' ')}      
- Processes: ${serverStats.processes.toString().padEnd(40, ' ')}
- SSH: Active connections: 2        
- IP: ${serverStats.ip.padEnd(40, ' ')}          
- Load Average: ${serverStats.loadAverage.padEnd(40, ' ')}
-+------------------------------------------------+`}
-                        </pre>
+                        <div className="text-xs w-full md:w-1/4 mt-4 md:mt-0">
+                            <div className="border-b border-green-400 mb-2 pb-2">
+                                <p className="font-bold">Rootcorp v2.0.1:</p>
+                                <p>Kernel: 7.2.19-virtual</p>
+                                <p>Uptime: {serverStats.uptime}</p>
+                                <p>CPU: {serverStats.cpu}</p>
+                                <p>GPU: {serverStats.gpu}</p>
+                                <p>Memory: {serverStats.memory}</p>
+                                <p>Disk: {serverStats.disk}</p>
+                                <p>Processes: {serverStats.processes}</p>
+                                <p>SSH: {serverStats.ssh}</p>
+                                <p>IP: {serverStats.ip}</p>
+                                <p>Load Average: {serverStats.loadAverage}</p>
+                            </div>
+                            <div className="border-b border-green-400 mb-2 pb-2">
+                                <p className="font-bold">Community Notes:</p>
+                                <p className="mt-1">Welcome to RootCorp, a WIP and dynamic hub for various projects and services. This site is always evolving, and we value your feedback.</p>
+                                <p className="mt-1">RootCorp is an "everything" site, providing tools, resources, and a collaborative space for developers and enthusiasts. Explore, contribute, and join our community on Discord.</p>
+                                <p className="mt-1">Contact me on Discord at 'febzey' or via IRC. We also invite new members if you're interested.</p>
+                            </div>
+                            <div>
+                                <p className="font-bold">Applications Currently Running:</p>
+                                <p className="mt-1">Contabo (Dusseldorf):</p>
+                                <ul className="ml-4 list-disc list-inside">
+                                    <li>ForestBot Instances</li>
+                                    <li>ForestBot Discord</li>
+                                    <li>ForestBot Website (<a href="https://forestbot.org" className="underline hover:text-blue-300">https://forestbot.org</a>)</li>
+                                    <li>ForestBot Control Server (<a href="https://api.forestbot.org/status" className="underline hover:text-blue-300">https://api.forestbot.org</a>)</li>
+                                    <li>Minecraft Server (forestbot.org) (1.21.1 Folia)</li>
+                                    <li>RootCorp Proxy Server for Minecraft 1.21.1</li>
+                                    <li>RootCorp Website (<a href="https://lostwithin.space" className="underline hover:text-blue-300">https://lostwithin.space</a>)</li>
+                                    <li>RootCorp Tools And API</li>
+                                    <li>MariaDB (mySql)</li>
+                                </ul>
+                                <p className="mt-1">RaspberryPi (Canada):</p>
+                                <ul className="ml-4 list-disc list-inside">
+                                    <li>Active Private Project</li>
+                                    <li>Pearlers (Pearl Butlers – Community bot for many ender stasis')</li>
+                                    <li>Active Private Project</li>
+                                    <li>Web Surfers (scans for open ports, Minecraft servers, and other network services)</li>
+                                    <li>Public IRC Chat</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div className="space-y-1">
                         {output.map((line, index) => (

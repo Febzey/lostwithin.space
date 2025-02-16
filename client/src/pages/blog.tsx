@@ -78,7 +78,7 @@ const BlogPost = () => {
     }
 
     return (
-        <div className={`min-h-screen bg-black ${isWhiteText ? 'text-white' : 'text-green-500'} font-mono p-6 w-2/3 mx-auto`}>
+        <div className={`min-h-screen bg-black ${isWhiteText ? 'text-white' : 'text-green-500'} font-mono p-6 w-full lg:w-2/3 mx-auto`}>
             <div className="flex justify-between items-center">
             <Link to={"/blogs"} className="flex flex-row gap-2 items-center underline hover:text-green-300">
                 <FaArrowLeft />

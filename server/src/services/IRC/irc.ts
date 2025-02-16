@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify";
 import type { WebSocket } from "@fastify/websocket";
-//import { db } from "../../Index.js"; 
 import db from "../../database/pool.js";
 
 type IRCUserRecord = {
