@@ -9,6 +9,7 @@ import fastifyStatic from '@fastify/static';
 import "dotenv/config"
 import path from 'path';
 import { fileURLToPath } from 'url';
+import catApi from "../services/cat/catapi.js";
 
 /**
  * Where we keep the fastify instance and the server configuration,
@@ -35,6 +36,10 @@ export default class Api {
 
         this.server.register(viewsController, {
             prefix: "/views",
+        });
+
+        this.server.register(catApi, {
+            prefix: "/cat",
         });
 
         this.server.register(IRCController, {
