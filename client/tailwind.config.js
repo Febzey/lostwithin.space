@@ -11,6 +11,9 @@ module.exports = {
       },
       fontFamily: {
         inco: ["Inconsolata", 'serif'],
+        space: ["Space Grotesk", 'serif'],
+        poppins: ["Poppins", 'serif'],
+        Bakbak: ["Bakbak One", 'serif'],
       }
     },
   },

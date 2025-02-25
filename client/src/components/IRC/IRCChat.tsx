@@ -94,10 +94,10 @@ const IRCChat = () => {
         }
 
         return (
-            <div className="h-screen text-green-400 font-inco p-6 flex flex-col">
-                <div className="border border-green-400 w-full h-full flex flex-col">
+            <div className="h-screen text-violet-400 font-inco p-6 flex flex-col z-50 relative">
+                <div className="border border-violet-400 w-full h-full flex flex-col">
                     {/* Terminal Header */}
-                    <div className="bg-green-600 text-black px-3 py-1 flex justify-between">
+                    <div className="bg-violet-600 text-black px-3 py-1 flex justify-between">
                         <TextEffect t="RootCorp Terminal v2.0.1" className=""></TextEffect>
                         <span>/IRC</span>
                     </div>
@@ -108,14 +108,14 @@ const IRCChat = () => {
                             <h2 className="text-lg mb-4">Sign In</h2>
                             <input
                                 type="text"
-                                className="w-full mb-2 p-2 bg-transparent border border-green-400 outline-none text-green-400"
+                                className="w-full mb-2 p-2 bg-transparent border border-violet-400 outline-none text-violet-400"
                                 placeholder="Key"
                                 value={key}
                                 onChange={(e) => setKey(e.target.value)}
                             />
                             <button
                                 onClick={handleSignIn}
-                                className="w-full mb-2 bg-green-600 text-black px-3 py-1"
+                                className="w-full mb-2 bg-violet-600 text-black px-3 py-1"
                             >
                                 {isLoading ? (
                                     <FaSpinner className="animate-spin inline-block mr-2" />
@@ -124,7 +124,7 @@ const IRCChat = () => {
                             </button>
                             <button
                                 onClick={() => setIsCreatingKey(true)}
-                                className="w-full bg-green-600 text-black px-3 py-1"
+                                className="w-full bg-violet-600 text-black px-3 py-1"
                             >
                                 Create New Key
                             </button>
@@ -137,10 +137,10 @@ const IRCChat = () => {
     }
 
     return (
-        <div className="h-screen text-green-400 font-inco p-6 flex flex-col">
-            <div className="border border-green-400 w-full h-full flex flex-col">
+        <div className="h-screen text-violet-400 font-inco p-6 flex flex-col relative">
+            <div className="border border-violet-400 w-full h-full flex flex-col">
                 {/* Terminal Header */}
-                <div className="bg-green-600 text-black px-3 py-1 flex justify-between">
+                <div className="bg-violet-600 text-black px-3 py-1 flex justify-between">
                     <TextEffect t="RootCorp Terminal v2.0.1" className=""></TextEffect>
                     <span>/IRC</span>
                 </div>
@@ -148,9 +148,9 @@ const IRCChat = () => {
                 {/* Main Body */}
                 <div className="flex-grow flex overflow-auto">
                     {/* Users List */}
-                    <div className="w-1/5 border-r border-green-400 p-4 overflow-y-auto">
+                    <div className="w-1/5 border-r border-violet-400 p-4 overflow-y-auto flex-shrink-0">
                         <h2 className="text-lg mb-2">Users</h2>
-                        <ul>
+                        <ul className="break-words">
                             {users.map((user, index) => (
                                 <li key={index}>
                                     {user.username} {user.username === username && "(you)"} <span className="text-sm text-gray-500">({user.client})</span>
@@ -170,17 +170,17 @@ const IRCChat = () => {
                 </div>
 
                 {/* Footer (message input) */}
-                <div className="border-t border-green-400 px-4 py-2 flex items-center">
+                <div className="border-t border-violet-400 px-4 py-2 flex items-center">
                     <span className="mr-2">$</span>
                     <input
                         type="text"
-                        className="flex-grow bg-transparent outline-none text-green-400"
+                        className="flex-grow bg-transparent outline-none text-violet-400"
                         value={message}
                         onChange={e => setMessage(e.target.value)}
                         onKeyDown={e => e.key === "Enter" && sendMessage()}
                         placeholder="Type a message..."
                     />
-                    <button onClick={sendMessage} className="ml-2 bg-green-600 text-black px-3 py-1">Send</button>
+                    <button onClick={sendMessage} className="ml-2 bg-violet-600 text-black px-3 py-1">Send</button>
                 </div>
             </div>
         </div>

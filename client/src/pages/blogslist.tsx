@@ -1,8 +1,6 @@
 import { FaArrowLeft, FaEye } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TextEffect from "../components/extra/textEffect/textEffect";
 
 interface BlogMetadata {
     title: string;
@@ -26,10 +24,8 @@ const BlogsList = () => {
             if (!module) continue;
             const metadata = (module as any).default;
             const url = import.meta.env.VITE_URL_API;
-            console.log(url);
             try {
                 const response = await fetch(`${url}/views?id=${metadata.id}`);
-                console.log(response);
                 if (response.ok) {
                     const data = await response.json();
                     metadata.views = data.view_count;
@@ -46,42 +42,47 @@ const BlogsList = () => {
     }, []);
 
     return (
-        <div className="h-screen bg-black text-green-400 font-inco p-6 flex flex-col">
-            <div className="border border-green-400 w-full h-full flex flex-col">
-                {/* Terminal Header */}
-                <div className="bg-green-600 text-black px-3 py-1 flex justify-between">
-                    <TextEffect t="RootCorp Terminal v2.0.1" className=""></TextEffect>
-                    <span>{location.pathname}</span>
-                </div>
-
-                {/* Main Body */}
-                <div className="p-4 flex-grow text-sm space-y-4 overflow-y-auto">
-                    <Link to={"/"} className="flex flex-row gap-2 items-center underline hover:text-green-300 mb-4">
-                        <FaArrowLeft />
-                        Home
-                    </Link>
-
-                    <section className="space-y-8">
+        <div className="relative min-h-screen  text-white font-sans">
+            {/* Fixed top navbar */}
+            <div className="absolute top-0 left-0 w-full p-4 z-20">
+                <Link to="/" className="flex items-center gap-2 underline hover:text-gray-300">
+                    <FaArrowLeft /> Home
+                </Link>
+            </div>
+            {/* Main Content */}
+            <div className="relative z-10 flex flex-col min-h-screen px-4 py-8">
+                <div className="w-full  bg-black bg-opacity-80  rounded-lg p-8 shadow-2xl">
+                    <h1 className="text-4xl font-bold text-center mb-8 ">Explore Our Blogs</h1>
+                    <div className="space-y-8 w-full mx-auto lg:w-2/3">
                         {blogPosts.map((preview, key) => (
-                            <div key={key} className="cursor-pointer" onClick={() => nav(`/blogs/${preview.slug}`)}>
-                                <div className="flex flex-row justify-between items-center">
-                                    <h1 className="text-3xl font-bold">{preview.title}</h1>
-                                    <div className="flex flex-col items-end italic text-sm w-2/3 mb-auto">
-                                        <div className="flex flex-row gap-1 items-center">
-                                            <FaEye />
-                                            {preview.views}
+                            <div key={key}>
+                                <div 
+                                    className="relative  cursor-pointer rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg"
+                                    onClick={() => nav(`/blogs/${preview.slug}`)}
+                                    style={{ backgroundImage: "url('/assets/space-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                    <div className=" inset-0 bg-black bg-opacity-60 p-6 flex flex-col justify-between">
+                                        <div>
+                                            <h2 className="text-2xl font-bold mb-2">{preview.title}</h2>
+                                            <p className="text-sm text-gray-300 mb-4">{preview.summary}</p>
                                         </div>
-                                        <div className="flex flex-col">
-                                            <p>{preview.published_date}</p>
-                                            <p className="ml-auto">Author: {preview.author}</p>
+                                        <div className="flex items-center justify-between text-xs text-gray-400">
+                                            <div className="flex items-center gap-1">
+                                                <FaEye /><span>{preview.views}</span>
+                                            </div>
+                                            <div className="text-right">
+                                                <p>{preview.published_date}</p>
+                                                <p className="italic">By {preview.author}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <p className="mt-4 text-base">{preview.summary}</p>
-                                <hr className="my-4 border-green-700" />
+                                {/* Gradient line */}
+                                {key < blogPosts.length - 1 && (
+                                    <div className="my-4 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"></div>
+                                )}
                             </div>
                         ))}
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>

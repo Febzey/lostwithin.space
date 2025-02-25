@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import TextEffect from "../../extra/textEffect/textEffect";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { FaExclamationTriangle, FaDiscord } from "react-icons/fa";
+import CommunityNotesPopup from "./CommunityNotesPopup";
 
 const getRandomInt = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -12,9 +13,6 @@ const getRandomFloat = (min: number, max: number, decimals: number) => {
 };
 
 export default function GreetingCard() {
-    const [command, setCommand] = useState("");
-    const [output, setOutput] = useState<string[]>([]);
-    const outputRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
     const [serverStats, setServerStats] = useState({
         uptime: "69 days, 4 hours, 20 minutes",
@@ -25,160 +23,111 @@ export default function GreetingCard() {
         processes: 213,
         ssh: "Active connections: 2",
         ip: "192.168.1.101",
-        loadAverage: "0.58, 0.76, 0.65"
+        loadAverage: "0.58, 0.76, 0.65",
     });
+
+    const [showBanner, setShowBanner] = useState(true);
+    const [showCommunity, setShowCommunity] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setServerStats(prevStats => ({
-                ...prevStats,
+            setServerStats((prev) => ({
+                ...prev,
                 cpu: "8x Intel Core i7 @ 3.90GHz",
                 memory: `${getRandomInt(8, 16)} GB / 16 GB (${getRandomInt(50, 100)}%)`,
                 disk: `952 GB / 16 TB (48%)`,
                 processes: getRandomInt(200, 300),
-                loadAverage: `${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}`
+                loadAverage: `${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}, ${getRandomFloat(0.1, 1.0, 2)}`,
             }));
-        }, 1000);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
 
-    const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            let newOutput = [...output];
-            if (command.trim() === "help") {
-                newOutput = [...newOutput, "Available commands: help, echo [message], clear, add, sub, mul, div, date, ls, cwd"];
-            } else if (command.startsWith("echo ")) {
-                newOutput = [...newOutput, command.slice(5)];
-            } else if (command.trim() === "clear") {
-                newOutput = [];
-            } else if (command.startsWith("add ")) {
-                const [_, num1, num2] = command.split(" ");
-                const result = parseFloat(num1) + parseFloat(num2);
-                newOutput = [...newOutput, `Result: ${result}`];
-            } else if (command.startsWith("sub ")) {
-                const [_, num1, num2] = command.split(" ");
-                const result = parseFloat(num1) - parseFloat(num2);
-                newOutput = [...newOutput, `Result: ${result}`];
-            } else if (command.startsWith("mul ")) {
-                const [_, num1, num2] = command.split(" ");
-                const result = parseFloat(num1) * parseFloat(num2);
-                newOutput = [...newOutput, `Result: ${result}`];
-            } else if (command.startsWith("div ")) {
-                const [_, num1, num2] = command.split(" ");
-                const result = parseFloat(num1) / parseFloat(num2);
-                newOutput = [...newOutput, `Result: ${result}`];
-            } else if (command.trim() === "date") {
-                newOutput = [...newOutput, new Date().toString()];
-            } else if (command.trim() === "ls") {
-                newOutput = [...newOutput, 
-                    "├── etc/",
-                    "│   ├── nginx/",
-                    "│   ├── ssh/",
-                    "│   └── hosts",
-                    "└── home/",
-                    "    ├── user/",
-                    "    └── rootcorp/"
-                ];
-            } else if (command.trim() === "cwd") {
-                newOutput = [...newOutput, "rootcorp/home"];
-            } else {
-                newOutput = [...newOutput, `Command not found: ${command}`];
-            }
-            setOutput(newOutput);
-            setCommand("");
-            setTimeout(() => {
-                if (outputRef.current) {
-                    outputRef.current.scrollTop = outputRef.current.scrollHeight;
-                }
-            }, 0);
-        }
-    };
-
     return (
-        <div className="h-screen text-green-400 font-inco p-6 flex flex-col">
-            <div className="border border-green-400 w-full h-full flex flex-col">
-                {/* Terminal Header */}
-                <div className="bg-green-600 text-black px-3 py-1 flex justify-between">
-                    <TextEffect t="RootCorp Terminal v2.0.1" className=""></TextEffect>
-                    <span>{location.pathname}</span>
+        <div className="relative min-h-screen text-gray-100 z-30 font-Bakbak">
+            {/* Tabs Container */}
+            <div className="fixed top-0 w-full flex justify-center z-50 ">
+                <div className="flex items-center space-x-3 bg-gray-800 rounded-b-md px-2 py-1 shadow shadow-gray-700">
+                    <button
+                        onClick={() => setShowCommunity(true)}
+                        className="text-sm text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-1 rounded transition-colors"
+                    >
+                        Community Notes
+                    </button>
+                    <span className="w-px bg-gray-600 h-4" />
+                    <button
+                        onClick={() => window.open("https://discord.gg/AcddMYg5", "_blank")}
+                        className="flex items-center text-sm text-[#5865F2] hover:text-white hover:bg-[#5865F2] px-3 py-1 rounded transition-colors"
+                    >
+                        <FaDiscord className="mr-1" />
+                        Join Discord
+                    </button>
                 </div>
+            </div>
 
-                {/* Main Body */}
-                <div ref={outputRef} className="p-4 flex-grow text-sm space-y-4 overflow-y-auto">
-                    <div className="flex flex-col md:flex-row justify-between">
-                        <div className="space-y-1">
-                            <p>$ <Link className="underline hover:text-blue-300" to="/projects">/projects</Link></p>
-                            <p>$ <Link className="underline hover:text-blue-300" to="/blogs">/blogs</Link></p>
-                            <p>$ <Link className="underline hover:text-blue-300" to="/vpn">/vpn</Link></p>
-                            <p>$ <Link className="underline hover:text-blue-300" to="/irc">/IRC</Link></p>
-                            <p>$ <Link className="underline hover:text-blue-300" to="/shortener">/shortener</Link></p>
+            <div className="relative z-10 flex flex-col">
+
+                {/* Hero Section */}
+                <div
+                    className="relative h-screen  bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center text-center"
+                    style={{ backgroundImage: "url('/assets/space-bg.jpg')" }}
+                >
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-violet-500 tracking-wide uppercase">
+                        lostwithin.space
+                    </h1>
+                    <p className="text-base font-light md:text-lg text-white mt-2">
+                        Stake your claim on the internet.
+                    </p>
+
+                    {/* Quick Links */}
+                    <section className="max-w-6xl mx-auto px-4 relative p-5">
+                        <ul className="flex flex-col md:flex-row flex-wrap gap-2 md:gap-4">
+                            <li><Link to="/projects" className="block py-2 md:py-0 hover:text-violet-200 underline underline-offset-[4px] uppercase text-xs font-bold decoration-[2px]">projects</Link></li>
+                            <li><Link to="/blogs" className="block py-2 md:py-0 hover:text-violet-200 underline underline-offset-[4px] uppercase text-xs font-bold decoration-[2px]">blogs</Link></li>
+                            <li><Link to="/irc" className="block py-2 md:py-0 hover:text-violet-200 underline underline-offset-[4px] uppercase text-xs font-bold decoration-[2px]">irc</Link></li>
+                            <li><Link to="/shortener" className="block py-2 md:py-0 hover:text-violet-200 underline underline-offset-[4px] uppercase text-xs font-bold decoration-[2px]">shortener</Link></li>
+                        </ul>
+                    </section>
+
+
+                    {/* quick info about goal. */}
+                    {showBanner && (
+                        <div className="w-2/5 h-auto items-center justify-center mt-10 p-5 rounded flex flex-row relative z-50 bg-gray-800">
+                            <button
+                                onClick={() => setShowBanner(false)}
+                                className="absolute top-2 -translate-y-4 translate-x-3 bg-gray-700 rounded-full w-5 right-2 text-sm text-gray-300 hover:text-white"
+                            >
+                                X
+                            </button>
+                            <div className="flex flex- h-full mr-5 items-center gap-2">
+                                <div className="bg-violet-600 h-full w-2 rounded-full"></div>
+                                {/* <FaExclamationTriangle className="text-4xl text-red-500"/> */}
+                                
+                            </div>
+                            <div className="flex flex-col w-full h-full text-left justify-center">
+                            <h2 className="text-lg  text-violet-500">Welcome to LostWithinSpace</h2>
+                                <p className="text-sm text-gray-300 mt-1">
+                                Welcome to LostWithinSpace, a work-in-progress hub for open-source projects and internet services. Our focus is on collaboration, exploration, and sharing knowledge. Feedback and contributions are always welcome—join the discussion on Discord or IRC.
+                                </p>
+                            </div>
                         </div>
-
-                        <div className="text-xs w-full md:w-1/4 mt-4 md:mt-0">
-                            <div className="border-b border-green-400 mb-2 pb-2">
-                                <p className="font-bold">Rootcorp v2.0.1:</p>
-                                <p>Kernel: 7.2.19-virtual</p>
-                                <p>Uptime: {serverStats.uptime}</p>
-                                <p>CPU: {serverStats.cpu}</p>
-                                <p>GPU: {serverStats.gpu}</p>
-                                <p>Memory: {serverStats.memory}</p>
-                                <p>Disk: {serverStats.disk}</p>
-                                <p>Processes: {serverStats.processes}</p>
-                                <p>SSH: {serverStats.ssh}</p>
-                                <p>IP: {serverStats.ip}</p>
-                                <p>Load Average: {serverStats.loadAverage}</p>
-                            </div>
-                            <div className="border-b border-green-400 mb-2 pb-2">
-                                <p className="font-bold">Community Notes:</p>
-                                <p className="mt-1">Welcome to RootCorp, a WIP and dynamic hub for various projects and services. This site is always evolving, and we value your feedback.</p>
-                                <p className="mt-1">RootCorp is an "everything" site, providing tools, resources, and a collaborative space for developers and enthusiasts. Explore, contribute, and join our community on Discord.</p>
-                                <p className="mt-1">Contact me on Discord at 'febzey' or via IRC. We also invite new members if you're interested.</p>
-                            </div>
-                            <div>
-                                <p className="font-bold">Applications Currently Running:</p>
-                                <p className="mt-1">Contabo (Dusseldorf):</p>
-                                <ul className="ml-4 list-disc list-inside">
-                                    <li>ForestBot Instances</li>
-                                    <li>ForestBot Discord</li>
-                                    <li>ForestBot Website (<a href="https://forestbot.org" className="underline hover:text-blue-300">https://forestbot.org</a>)</li>
-                                    <li>ForestBot Control Server (<a href="https://api.forestbot.org/status" className="underline hover:text-blue-300">https://api.forestbot.org</a>)</li>
-                                    <li>Minecraft Server (forestbot.org) (1.21.1 Folia)</li>
-                                    <li>RootCorp Proxy Server for Minecraft 1.21.1</li>
-                                    <li>RootCorp Website (<a href="https://lostwithin.space" className="underline hover:text-blue-300">https://lostwithin.space</a>)</li>
-                                    <li>RootCorp Tools And API</li>
-                                    <li>MariaDB (mySql)</li>
-                                </ul>
-                                <p className="mt-1">RaspberryPi (Canada):</p>
-                                <ul className="ml-4 list-disc list-inside">
-                                    <li>Active Private Project</li>
-                                    <li>Pearlers (Pearl Butlers – Community bot for many ender stasis')</li>
-                                    <li>Active Private Project</li>
-                                    <li>Web Surfers (scans for open ports, Minecraft servers, and other network services)</li>
-                                    <li>Public IRC Chat</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="space-y-1">
-                        {output.map((line, index) => (
-                            <p key={index} className="whitespace-pre-wrap break-words">{line}</p>
-                        ))}
-                    </div>
+                    )}
                 </div>
 
-                {/* Footer (command prompt) */}
-                <div className="border-t border-green-400 px-4 py-2 flex items-center">
-                    <span className="mr-2">$</span>
-                    <input
-                        type="text"
-                        className="flex-grow bg-transparent outline-none text-green-400"
-                        value={command}
-                        onChange={e => setCommand(e.target.value)}
-                        onKeyDown={handleCommand}
-                        placeholder="Type a command..."
-                    />
-                </div>
+                {/* Toggle Info Button */}
+
+                {/* Community Notes Popup */}
+                {showCommunity && (
+                    <CommunityNotesPopup onClose={() => setShowCommunity(false)} />
+                )}
+
+                {/* Main Content */}
+
+                {/* Footer */}
+                {/* <footer className="bg-black text-center text-xs py-3 mt-6 border-t border-gray-700">
+                © 2023 lostwithin.space · Beyond the horizon
+            </footer> */}
             </div>
         </div>
     );

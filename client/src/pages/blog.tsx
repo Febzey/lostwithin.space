@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
-import { FaArrowLeft, FaEye } from "react-icons/fa"
+import { FaArrowLeft, FaEye } from "react-icons/fa";
 
 interface BlogMetadata {
     title: string,
@@ -15,12 +15,11 @@ interface BlogMetadata {
 
 const BlogPost = () => {
     const { slug } = useParams();
-
     const [markdownContent, setMarkdownContent] = useState("");
     const [meta, setMarkDownMeta] = useState<BlogMetadata>();
     const [isWhiteText, setIsWhiteText] = useState(false);
     const { pathname } = useLocation();
-    const [views, setViews] = useState(0)
+    const [views, setViews] = useState(0);
 
     useEffect(() => {
         if (!slug) return;
@@ -36,7 +35,6 @@ const BlogPost = () => {
         setMarkdownContent(blog.toString());
         setMarkDownMeta(JSON.parse(meta.toString()));
 
-
         const fetchBlogViews = async () => {
             try {
                 const url = import.meta.env.VITE_URL_API;
@@ -48,7 +46,7 @@ const BlogPost = () => {
             } catch (err) {
                 console.error('Failed to fetch blog views:', err);
             }
-        }
+        };
 
         const incrementBlogViews = async () => {
             try {
@@ -63,7 +61,7 @@ const BlogPost = () => {
             } catch (err) {
                 console.error('Failed to increment blog views:', err);
             }
-        }
+        };
 
         fetchBlogViews();
         incrementBlogViews();
@@ -78,28 +76,21 @@ const BlogPost = () => {
     }
 
     return (
-        <div className={`min-h-screen bg-black ${isWhiteText ? 'text-white' : 'text-green-500'} font-mono p-6 w-full lg:w-2/3 mx-auto`}>
+        <div className={`min-h-screen relative text-white p-6 w-full mx-auto bg-black`}>
             <div className="flex justify-between items-center">
-            <Link to={"/blogs"} className="flex flex-row gap-2 items-center underline hover:text-green-300">
-                <FaArrowLeft />
-                Other Posts
-            </Link>
-
-            <button onClick={toggleTextColor} className="mt-4 underline hover:text-green-300">
-                Toggle Text Color
-            </button>
+                <Link to={"/blogs"} className="flex flex-row gap-2 items-center underline hover:text-green-300">
+                    <FaArrowLeft />
+                    Other Posts
+                </Link>
             </div>
-
-            <div className="mt-4 ">
+            <div className="mt-4 w-2/3 mx-auto">
                 <div className="flex flex-col mr-auto italic text-sm mb-4">
                     <p>Author: {meta?.author}</p>
-
                     <p>{meta?.published_date}</p>
                     <span className="flex flex-row gap-1 items-center">
                         <FaEye /> {views}
                     </span>
                 </div>
-
                 <ReactMarkdown
                     className="space-y-4 mt-20"
                     components={{
