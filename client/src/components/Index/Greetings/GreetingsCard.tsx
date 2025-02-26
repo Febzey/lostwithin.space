@@ -27,7 +27,6 @@ export default function GreetingCard() {
     });
 
     const [showBanner, setShowBanner] = useState(true);
-    const [showCommunity, setShowCommunity] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -46,25 +45,7 @@ export default function GreetingCard() {
 
     return (
         <div className="relative min-h-screen text-gray-100 z-30 font-Bakbak">
-            {/* Tabs Container */}
-            <div className="fixed top-0 w-full flex justify-center z-50 ">
-                <div className="flex items-center space-x-3 bg-gray-800 rounded-b-md px-2 py-1 shadow shadow-gray-700">
-                    <button
-                        onClick={() => setShowCommunity(true)}
-                        className="text-sm text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-1 rounded transition-colors"
-                    >
-                        Community Notes
-                    </button>
-                    <span className="w-px bg-gray-600 h-4" />
-                    <button
-                        onClick={() => window.open("https://discord.gg/AcddMYg5", "_blank")}
-                        className="flex items-center text-sm text-[#5865F2] hover:text-white hover:bg-[#5865F2] px-3 py-1 rounded transition-colors"
-                    >
-                        <FaDiscord className="mr-1" />
-                        Join Discord
-                    </button>
-                </div>
-            </div>
+
 
             <div className="relative z-10 flex flex-col">
 
@@ -118,9 +99,6 @@ export default function GreetingCard() {
                 {/* Toggle Info Button */}
 
                 {/* Community Notes Popup */}
-                {showCommunity && (
-                    <CommunityNotesPopup onClose={() => setShowCommunity(false)} />
-                )}
 
                 {/* Main Content */}
 
